@@ -81,15 +81,16 @@ export const sessions: Session[] = [
       { id: 'tier-out-3', sessionId: 'session-outbound', title: 'Rainmaker Seat', amountCents: 75000, description: 'Limited hot-seat review for your offer.', perks: ['Everything in Builder', 'Hot-seat review'], maxQuantity: 5, sortOrder: 3 },
     ],
     milestones: [
-      { id: 'm1', sessionId: 'session-outbound', thresholdCents: 500000, title: 'Live session unlocks', description: 'The core lesson funds and gets scheduled.', sortOrder: 1 },
-      { id: 'm2', sessionId: 'session-outbound', thresholdCents: 750000, title: 'Swipe file for everyone', description: 'All backers receive 12 proven opener angles.', sortOrder: 2 },
+      { id: 'm1', sessionId: 'session-outbound', thresholdCents: 500000, title: 'The “Never Start From Zero Again” Revenue Vault', description: 'Setup: stop staring at blank campaigns while payroll keeps ticking. Payoff: unlock the live session plus a plug-and-send outbound system. Tie down: how much faster would growth feel if your next campaign started with proven openers, follow-ups, and close prompts already loaded?', sortOrder: 1 },
+      { id: 'm2', sessionId: 'session-outbound', thresholdCents: 750000, title: 'The Child-Adult-Parent Reply Converter Pack', description: 'Setup: prospects do not say yes with logic alone. Payoff: every backer gets reply scripts that hit desire, proof, and safety in the right order. Tie down: imagine replies that make buyers feel excited, justified, and reassured before they book.', sortOrder: 2 },
     ],
     bonuses: [
-      { id: 'b1', title: 'Outbound swipe file', description: 'Twelve opener and follow-up angles.', bonusType: 'swipe_file' },
-      { id: 'b2', title: 'Private teardown', description: 'Julian reviews one campaign live.', bonusType: 'teardown' },
+      { id: 'b1', title: 'Child: “Book Calls While You Sleep” Swipe File', description: 'Subject lines and openers designed to make the buyer feel the relief of waking up to interested prospects.', bonusType: 'swipe_file' },
+      { id: 'b2', title: 'Adult: Pipeline Math Decision Sheet', description: 'A simple calculator that shows what each reply, call, and close is worth before you waste another month guessing.', bonusType: 'template_pack' },
+      { id: 'b3', title: 'Parent: Safe Follow-Up Guardrails', description: 'A reassurance checklist that keeps outreach firm, ethical, and brand-safe so your reputation stays protected.', bonusType: 'checklist' },
     ],
     prizes: [
-      { id: 'prize-1', sessionId: 'session-outbound', title: 'Highest backer teardown', description: 'Top backer gets a one-on-one campaign teardown.', prizeType: 'one_on_one', quantity: 1, awardedBy: 'highest_pledge' },
+      { id: 'prize-1', sessionId: 'session-outbound', title: 'Highest contributor private revenue teardown', description: 'Highest contributor gets an extra one-on-one campaign teardown, personal objection map, and a 30-day follow-up plan.', prizeType: 'one_on_one', quantity: 1, awardedBy: 'highest_pledge' },
     ],
     pledges: [
       { id: 'p5', sessionId: 'session-outbound', tierId: 'tier-out-3', userId: 'u5', userName: 'Blake', amountCents: 75000, status: 'authorized', createdAt: new Date().toISOString() },
@@ -118,14 +119,19 @@ export const sessions: Session[] = [
       { id: 'tier-acq-3', sessionId: 'session-local-acquisition', title: 'Bugatti Seat', amountCents: 120000, description: 'Limited private deal review.', perks: ['Everything in Deal Builder', 'Private deal review'], maxQuantity: 3, sortOrder: 3 },
     ],
     milestones: [
-      { id: 'm3', sessionId: 'session-local-acquisition', thresholdCents: 1000000, title: 'Sprint funded', description: 'The live acquisition sprint unlocks.', sortOrder: 1 },
-      { id: 'm4', sessionId: 'session-local-acquisition', thresholdCents: 1400000, title: 'Bonus Q&A unlocks', description: 'All backers get a second group Q&A.', sortOrder: 2 },
-      { id: 'm5', sessionId: 'session-local-acquisition', thresholdCents: 1800000, title: 'Deal memo pack unlocks', description: 'All backers receive a deal memo template pack.', sortOrder: 3 },
+      { id: 'm3', sessionId: 'session-local-acquisition', thresholdCents: 1000000, title: 'The Hidden Deal Radar', description: 'Setup: most buyers chase obvious listings after the good deals are gone. Payoff: unlock the live acquisition sprint and a target-scoring map for finding quiet local service opportunities. Tie down: what would one under-marketed seller conversation be worth if it opened the door to your first deal?', sortOrder: 1 },
+      { id: 'm4', sessionId: 'session-local-acquisition', thresholdCents: 1400000, title: 'The “Tax Leak Plugger” Owner Math Kit', description: 'Setup: cash leaks hide in taxes, payroll, and messy owner decisions. Payoff: every backer gets a tax-saving and expense-recapture worksheet for deal review. Tie down: imagine spotting savings before you buy, not six months after the mistake is yours.', sortOrder: 2 },
+      { id: 'm5', sessionId: 'session-local-acquisition', thresholdCents: 1800000, title: 'The Triple-Output Employee Playbook', description: 'Setup: buying a business is scary when the team only performs with the old owner watching. Payoff: unlock a post-close operating pack for getting employees producing more, faster, with less owner babysitting. Tie down: would the deal feel safer if you could see the first 30 days of execution before closing?', sortOrder: 3 },
+      { id: 'm6', sessionId: 'session-local-acquisition', thresholdCents: 2200000, title: 'The Referral Flywheel Autopilot', description: 'Setup: the cheapest customers are already one happy customer away, but most businesses never ask correctly. Payoff: unlock customer referral scripts, review prompts, and partner follow-up templates. Tie down: picture the business sending you warm introductions before you spend another dollar on ads.', sortOrder: 4 },
     ],
     bonuses: [
-      { id: 'b3', title: 'Deal memo pack', description: 'Templates for acquisition notes and seller outreach.', bonusType: 'template_pack' },
+      { id: 'b3', title: 'Child: “I Found the Secret Door” Deal List Builder', description: 'A sourcing worksheet that makes hidden local opportunities feel findable instead of mysterious.', bonusType: 'template_pack' },
+      { id: 'b4', title: 'Adult: Seller Math and Tax Leak Calculator', description: 'A rational scoring sheet for estimating savings, cash flow, and risk before emotions take over.', bonusType: 'template_pack' },
+      { id: 'b5', title: 'Parent: First-30-Day Safety Checklist', description: 'A control checklist that reassures the protective part of the buyer that nothing critical gets missed after closing.', bonusType: 'checklist' },
     ],
-    prizes: [],
+    prizes: [
+      { id: 'prize-2', sessionId: 'session-local-acquisition', title: 'Highest contributor deal memo review', description: 'Highest contributor gets an extra private deal memo review, seller outreach rewrite, and risk map.', prizeType: 'teardown', quantity: 1, awardedBy: 'highest_pledge' },
+    ],
     pledges: [
       { id: 'p8', sessionId: 'session-local-acquisition', tierId: 'tier-acq-2', userId: 'u8', userName: 'Devon', amountCents: 39900, status: 'authorized', createdAt: new Date().toISOString() },
       { id: 'p9', sessionId: 'session-local-acquisition', tierId: 'tier-acq-3', userId: 'u9', userName: 'Jordan', amountCents: 120000, status: 'authorized', createdAt: new Date().toISOString() },

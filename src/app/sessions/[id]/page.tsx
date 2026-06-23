@@ -62,15 +62,47 @@ export default async function SessionDetail({ params }: { params: Promise<{ id: 
           </div>
 
           {milestones.length ? (
-            <div className="mt-6 rounded-[28px] border border-white/10 bg-white/[0.045] p-6">
-              <h3 className="text-xl font-semibold">Bonus ladder</h3>
-              <div className="mt-4 space-y-3">{milestones.map((milestone) => <div key={milestone.id} className="flex gap-3 rounded-2xl bg-black/20 p-4">{milestone.unlocked ? <CheckCircle2 className="h-5 w-5 text-mint" /> : <Lock className="h-5 w-5 text-white/25" />}<div><p className="font-semibold">{milestone.title}</p><p className="text-sm text-white/55">{formatCurrency(milestone.thresholdCents)}: {milestone.description}</p></div></div>)}</div>
+            <div className="mt-6 rounded-[28px] border border-gold/40 bg-gold/10 p-6 shadow-stripe">
+              <h3 className="text-xl font-semibold text-gold">Gold bonus ladder</h3>
+              <p className="mt-2 text-sm leading-6 text-white/65">Every gold-outlined bonus shows how close the room is to unlocking the next mouth-watering upgrade for all backers.</p>
+              <div className="mt-4 space-y-4">
+                {milestones.map((milestone) => {
+                  const milestoneProgress = Math.min(100, Math.round((raised / milestone.thresholdCents) * 100));
+                  return (
+                    <div key={milestone.id} className="rounded-2xl border border-gold/45 bg-black/20 p-4 shadow-[0_0_35px_rgba(244,201,93,.10)]">
+                      <div className="flex gap-3">
+                        {milestone.unlocked ? <CheckCircle2 className="h-5 w-5 shrink-0 text-mint" /> : <Lock className="h-5 w-5 shrink-0 text-gold" />}
+                        <div>
+                          <p className="font-semibold text-gold">{milestone.title}</p>
+                          <p className="mt-1 text-sm leading-6 text-white/65">{formatCurrency(milestone.thresholdCents)} unlock: {milestone.description}</p>
+                        </div>
+                      </div>
+                      <div className="mt-4 h-2 overflow-hidden rounded-full bg-white/10"><div className="h-full rounded-full bg-gradient-to-r from-gold to-mint" style={{ width: `${milestoneProgress}%` }} /></div>
+                      <p className="mt-2 text-xs font-semibold text-gold/85">{milestoneProgress}% of the way to this unlock</p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          ) : null}
+
+          {session.bonuses.length ? (
+            <div className="mt-6 rounded-[28px] border border-gold/35 bg-white/[0.045] p-6">
+              <h3 className="text-xl font-semibold text-gold">Bonus names built to sell</h3>
+              <div className="mt-4 space-y-3">
+                {session.bonuses.map((bonus) => (
+                  <div key={bonus.id} className="rounded-2xl border border-gold/30 bg-gold/10 p-4">
+                    <p className="font-semibold text-white">{bonus.title}</p>
+                    <p className="mt-1 text-sm leading-6 text-white/65">{bonus.description}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           ) : null}
 
           {session.prizes.length ? (
-            <div className="mt-6 rounded-[28px] border border-gold/25 bg-gold/10 p-6">
-              <div className="flex items-center gap-2 text-gold"><Crown className="h-5 w-5" /><h3 className="text-xl font-semibold">Top bidder prize</h3></div>
+            <div className="mt-6 rounded-[28px] border border-gold/45 bg-gold/10 p-6 shadow-[0_0_35px_rgba(244,201,93,.10)]">
+              <div className="flex items-center gap-2 text-gold"><Crown className="h-5 w-5" /><h3 className="text-xl font-semibold">Highest contributor gets extra bonuses</h3></div>
               <p className="mt-3 text-white/70">{session.prizes[0].description}</p>
               <div className="mt-4 space-y-2 text-sm">{rankings.map((rank) => <p key={rank.userId}>#{rank.rank} {rank.userName}: {formatCurrency(rank.totalPledgedCents)}</p>)}</div>
             </div>
