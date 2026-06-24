@@ -87,8 +87,7 @@ function AdvancedDemo() {
     <section id="advanced" className="bg-navy py-20 text-white">
       <div className="mx-auto max-w-7xl px-6">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="text-sm font-semibold uppercase tracking-[.18em] text-gold">Version 2 concept</p>
-          <h2 className="mt-4 text-4xl font-bold tracking-[-.035em] md:text-5xl">Make each lesson an event worth backing.</h2>
+          <h2 className="text-4xl font-bold tracking-[-.035em] md:text-5xl">Make each lesson an event worth backing.</h2>
           <p className="mt-5 text-lg leading-8 text-white/72">Creators can add bonus ladders, hot seats, top-bidder prizes, and group-buy mechanics without making the first MVP confusing.</p>
         </div>
         <div className="mt-12 grid gap-5 md:grid-cols-3">
@@ -98,9 +97,11 @@ function AdvancedDemo() {
             ['Hybrid campaigns', 'Pool money to fund the lesson while limited premium slots make the offer richer.'],
           ].map(([title, body]) => (
             <div key={title} className="rounded-3xl border border-white/10 bg-white/[.06] p-7">
-              <Sparkles className="h-7 w-7 text-gold" />
-              <h3 className="mt-5 text-2xl font-bold tracking-[-.02em]">{title}</h3>
-              <p className="mt-3 leading-7 text-white/70">{body}</p>
+              <div className="flex items-center gap-3">
+                <Sparkles className="h-7 w-7 shrink-0 text-gold" />
+                <h3 className="text-2xl font-bold tracking-[-.02em]">{title}</h3>
+              </div>
+              <p className="mt-4 leading-7 text-white/70">{body}</p>
             </div>
           ))}
         </div>
@@ -111,7 +112,7 @@ function AdvancedDemo() {
             const rankings = pledgeRankings(session.pledges).slice(0, 3);
             return (
               <div key={session.id} className="rounded-3xl border border-white/10 bg-white/[.06] p-7">
-                <div className="flex items-center justify-between gap-3"><ModeBadge mode={session.campaignMode} /><span className="text-sm text-white/55">V2 preview</span></div>
+                <div className="flex items-center justify-between gap-3"><ModeBadge mode={session.campaignMode} /></div>
                 <h3 className="mt-5 text-3xl font-bold tracking-[-.03em]">{session.title}</h3>
                 <div className="mt-6 space-y-3">
                   {milestones.map((milestone) => (
@@ -144,7 +145,7 @@ export default function HomePage() {
       <nav className="sticky top-0 z-50 border-b border-slate-200 bg-white/88 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <Link href="/" className="text-lg font-bold tracking-[-.03em] text-navy">Cohort CrowdFund</Link>
-          <div className="hidden items-center gap-7 text-sm font-semibold text-slate-600 md:flex"><a href="#sessions">Sessions</a><a href="#advanced">V2 concept</a><SecondaryButton href="/dashboard">Expert dashboard</SecondaryButton></div>
+          <div className="hidden items-center gap-7 text-sm font-semibold text-slate-600 md:flex"><a href="#sessions">Sessions</a><SecondaryButton href="/dashboard">Expert dashboard</SecondaryButton></div>
         </div>
       </nav>
 
