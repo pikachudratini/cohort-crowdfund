@@ -4,56 +4,56 @@ import { useEffect } from 'react';
 
 export function ScrollEffects() {
   useEffect(() => {
-    document.documentElement.classList.add('motion-ready');
     const cards = Array.from(document.querySelectorAll<HTMLElement>('.scroll-card'));
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('in-view');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.16, rootMargin: '0px 0px -8% 0px' },
-    );
-
-    cards.forEach((card, index) => {
-      card.style.setProperty('--stagger-delay', `${Math.min(index % 6, 5) * 70}ms`);
-      observer.observe(card);
-    });
-
     const parallaxImages = Array.from(document.querySelectorAll<HTMLElement>('.parallax-image'));
     let ticking = false;
 
-    const updateParallax = () => {
+    document.documentElement.classList.add('motion-ready');
+
+    cards.forEach((card, index) => {
+      const direction = index % 3 === 0 ? '-26px' : index % 3 === 1 ? '0px' : '26px';
+      card.style.setProperty('--stagger-delay', `${Math.min(index % 5, 4) * 55}ms`);
+      card.style.setProperty('--enter-x', direction);
+    });
+
+    const updateMotion = () => {
       ticking = false;
       const viewportHeight = window.innerHeight || 1;
+      const lowerTrigger = viewportHeight * 0.9;
+      const upperTrigger = viewportHeight * 0.08;
+
+      cards.forEach((card) => {
+        const rect = card.getBoundingClientRect();
+        const isInside = rect.top < lowerTrigger && rect.bottom > upperTrigger;
+        card.classList.toggle('in-view', isInside);
+        card.classList.toggle('out-above', rect.bottom <= upperTrigger);
+        card.classList.toggle('out-below', rect.top >= lowerTrigger);
+      });
+
       parallaxImages.forEach((image) => {
         const rect = image.getBoundingClientRect();
-        if (rect.bottom < -120 || rect.top > viewportHeight + 120) return;
+        if (rect.bottom < -140 || rect.top > viewportHeight + 140) return;
         const progress = (rect.top + rect.height / 2 - viewportHeight / 2) / viewportHeight;
-        const y = Math.max(-18, Math.min(18, progress * -34));
-        image.style.transform = `scale(1.08) translate3d(0, ${y}px, 0)`;
+        const y = Math.max(-24, Math.min(24, progress * -42));
+        image.style.transform = `scale(1.1) translate3d(0, ${y}px, 0)`;
       });
     };
 
-    const onScroll = () => {
+    const requestUpdate = () => {
       if (!ticking) {
-        window.requestAnimationFrame(updateParallax);
+        window.requestAnimationFrame(updateMotion);
         ticking = true;
       }
     };
 
-    updateParallax();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
+    updateMotion();
+    window.addEventListener('scroll', requestUpdate, { passive: true });
+    window.addEventListener('resize', requestUpdate);
 
     return () => {
-      observer.disconnect();
       document.documentElement.classList.remove('motion-ready');
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onScroll);
+      window.removeEventListener('scroll', requestUpdate);
+      window.removeEventListener('resize', requestUpdate);
     };
   }, []);
 

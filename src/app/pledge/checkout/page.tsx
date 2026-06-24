@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
-import { ArrowLeft, CreditCard, Lock, ShieldCheck, Trophy } from 'lucide-react';
+import { ArrowLeft, CreditCard, ShieldCheck, Trophy } from 'lucide-react';
+import { PaymentMethodChooser } from '@/components/PaymentMethodChooser';
 import { getSession } from '@/lib/mock-data';
 import { formatCurrency } from '@/lib/funding';
 
@@ -26,30 +27,25 @@ export default async function MockStripeCheckout({ searchParams }: { searchParam
             <div className="mt-8 flex items-center justify-between gap-4">
               <div>
                 <p className="text-sm font-medium text-slate-500">Secure payment mockup</p>
-                <h1 className="mt-2 text-3xl font-semibold tracking-[-.035em]">Enter payment details</h1>
+                <h1 className="mt-2 text-3xl font-semibold tracking-[-.035em]">Enter your details</h1>
               </div>
               <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-500">TEST MODE</span>
             </div>
 
-            <form action={successHref} className="mt-8 space-y-6">
-              <label className="block text-sm font-medium text-slate-700">Email
-                <input readOnly value="demo@example.com" className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none ring-violet/20 focus:ring-4" />
-              </label>
-              <label className="block text-sm font-medium text-slate-700">Card information
-                <div className="mt-2 overflow-hidden rounded-xl border border-slate-300">
-                  <input readOnly value="4242 4242 4242 4242" className="w-full border-b border-slate-300 px-4 py-3 outline-none" />
-                  <div className="grid grid-cols-2">
-                    <input readOnly value="12 / 34" className="border-r border-slate-300 px-4 py-3 outline-none" />
-                    <input readOnly value="123" className="px-4 py-3 outline-none" />
-                  </div>
-                </div>
-              </label>
-              <label className="block text-sm font-medium text-slate-700">Name on card
-                <input readOnly value="Demo Backer" className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none" />
-              </label>
-              <label className="block text-sm font-medium text-slate-700">Country or region
-                <input readOnly value="United States" className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none" />
-              </label>
+            <form action={successHref} className="mt-8 space-y-7">
+              <div className="grid gap-4 md:grid-cols-2">
+                <label className="block text-sm font-medium text-slate-700">Name
+                  <input readOnly value="Demo Backer" className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none ring-violet/20 focus:ring-4" />
+                </label>
+                <label className="block text-sm font-medium text-slate-700">Email
+                  <input readOnly value="demo@example.com" className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none ring-violet/20 focus:ring-4" />
+                </label>
+                <label className="block text-sm font-medium text-slate-700 md:col-span-2">Country or region
+                  <input readOnly value="United States" className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none" />
+                </label>
+              </div>
+
+              <PaymentMethodChooser successHref={successHref} />
 
               <div className="rounded-3xl border border-slate-200 bg-ivory p-6">
                 <div className="flex items-start justify-between gap-4">
@@ -69,28 +65,16 @@ export default async function MockStripeCheckout({ searchParams }: { searchParam
                 ) : null}
                 <div className="mt-5 border-t border-slate-200 pt-5">
                   <div className="flex justify-between text-sm text-slate-500"><span>Due today</span><span>$0.00</span></div>
-                  <div className="mt-2 flex justify-between text-sm text-slate-500"><span>Authorized amount</span><span>{formatCurrency(pledgeAmountCents)}</span></div>
-                  <div className="mt-4 flex justify-between text-lg font-semibold"><span>Charged if funded</span><span>{formatCurrency(pledgeAmountCents)}</span></div>
+                  <div className="mt-2 flex justify-between text-sm text-slate-500"><span>Authorized hold</span><span>{formatCurrency(pledgeAmountCents)}</span></div>
+                  <div className="mt-4 flex justify-between text-lg font-semibold"><span>Charged if lesson is funded</span><span>{formatCurrency(pledgeAmountCents)}</span></div>
                 </div>
               </div>
 
               <div className="flex items-start gap-3 rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-800">
                 <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0" />
-                <p><span className="font-semibold">Your card is authorized today.</span> You are charged only if the session funds. Demo mode: no real payment is processed.</p>
+                <p><span className="font-semibold">This creates an authorized hold.</span> You are not charged unless the lesson funds. Demo mode: no real payment is processed.</p>
               </div>
 
-              <button className="flex w-full items-center justify-center gap-2 rounded-xl bg-mint px-6 py-4 font-semibold text-white shadow-glow transition hover:bg-[#006f45]">
-                <Lock className="h-4 w-4" /> Authorize card pledge
-              </button>
-
-              <div className="relative py-1 text-center text-xs font-semibold uppercase tracking-[.18em] text-slate-400">
-                <span className="relative z-10 bg-white px-3">or</span>
-                <div className="absolute left-0 top-1/2 h-px w-full bg-slate-200" />
-              </div>
-
-              <Link href={successHref} className="flex w-full items-center justify-center rounded-xl border border-slate-300 bg-[#ffc439] px-6 py-4 shadow-sm transition hover:bg-[#f2b600]" aria-label="Pay with PayPal">
-                <img src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-color.svg" alt="PayPal" className="h-6 w-auto" />
-              </Link>
             </form>
           </section>
 
@@ -99,9 +83,9 @@ export default async function MockStripeCheckout({ searchParams }: { searchParam
             <div className="mt-8 rounded-3xl border border-sky/20 bg-white p-6 shadow-stripe">
               <h2 className="text-2xl font-semibold tracking-[-.035em]">Safe all-or-nothing pledge</h2>
               <div className="mt-5 space-y-4 text-sm leading-6 text-graphite">
-                <p>You enter payment details first, then review the pledge amount before authorizing.</p>
+                <p>First enter name and email, then choose card or PayPal.</p>
+                <p>After the payment method, the pledge amount is shown clearly for review.</p>
                 <p>You are charged only if the funding goal and minimum backer count are met by the deadline.</p>
-                <p>This demo uses a mocked checkout screen so you can show the flow without entering a real card.</p>
               </div>
             </div>
           </aside>

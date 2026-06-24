@@ -61,7 +61,7 @@ export default async function SessionDetail({ params }: { params: Promise<{ id: 
           </div>
 
           {milestones.length ? (
-            <div className="mt-6 rounded-[28px] border border-gold/40 bg-white p-6 shadow-stripe">
+            <div className="scroll-card mt-6 rounded-[28px] border border-gold/40 bg-white p-6 shadow-stripe">
               <h3 className="text-xl font-semibold text-gold">Group bonus unlocks</h3>
               <p className="mt-2 text-sm leading-6 text-graphite">Each gold-outlined unlock shows how close the room is to adding another upgrade for every backer.</p>
               <div className="mt-4 space-y-4">
@@ -69,7 +69,7 @@ export default async function SessionDetail({ params }: { params: Promise<{ id: 
                   const actualProgress = Math.min(100, Math.round((raised / milestone.thresholdCents) * 100));
                   const milestoneProgress = session.id === 'session-ai-loops' && milestone.sortOrder === 1 ? 89 : actualProgress;
                   return (
-                    <div key={milestone.id} className="rounded-2xl border border-gold/45 bg-ivory p-4 shadow-[0_0_35px_rgba(245,175,2,.16)]">
+                    <div key={milestone.id} className="scroll-card rounded-2xl border border-gold/45 bg-ivory p-4 shadow-[0_0_35px_rgba(245,175,2,.16)]">
                       <div className="flex gap-3">
                         {milestone.unlocked ? <CheckCircle2 className="h-5 w-5 shrink-0 text-mint" /> : <Lock className="h-5 w-5 shrink-0 text-gold" />}
                         <div>
@@ -87,11 +87,11 @@ export default async function SessionDetail({ params }: { params: Promise<{ id: 
           ) : null}
 
           {session.bonuses.length ? (
-            <div className="mt-6 rounded-[28px] border border-sky/20 bg-white p-6 shadow-stripe">
+            <div className="scroll-card mt-6 rounded-[28px] border border-sky/20 bg-white p-6 shadow-stripe">
               <h3 className="text-xl font-semibold text-gold">Included bonus tools</h3>
               <div className="mt-4 space-y-3">
                 {session.bonuses.map((bonus) => (
-                  <div key={bonus.id} className="rounded-2xl border border-gold/30 bg-gold/10 p-4">
+                  <div key={bonus.id} className="scroll-card rounded-2xl border border-gold/30 bg-gold/10 p-4">
                     <p className="font-semibold text-navy">{bonus.title}</p>
                     <p className="mt-1 text-sm leading-6 text-graphite">{bonus.description}</p>
                   </div>
@@ -101,7 +101,7 @@ export default async function SessionDetail({ params }: { params: Promise<{ id: 
           ) : null}
 
           {session.prizes.length ? (
-            <div className="mt-6 rounded-[28px] border border-gold/45 bg-gold/10 p-6 text-center shadow-[0_0_35px_rgba(245,175,2,.16)]">
+            <div className="scroll-card mt-6 rounded-[28px] border border-gold/45 bg-gold/10 p-6 text-center shadow-[0_0_35px_rgba(245,175,2,.16)]">
               <div className="flex items-center justify-center gap-2 text-gold"><Crown className="h-5 w-5" /><h3 className="text-xl font-semibold">Highest contributor gets extra bonuses</h3></div>
               <p className="mx-auto mt-3 max-w-md text-graphite">{session.prizes[0].description}</p>
               <div className="mx-auto mt-5 grid max-w-md gap-3 sm:grid-cols-2">
