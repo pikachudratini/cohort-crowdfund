@@ -29,5 +29,11 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .reveal { animation: reveal-up .5s cubic-bezier(.2,.8,.2,1) both; }
 .glass { background: rgba(255,255,255,.86); border: 1px solid rgba(0,100,210,.14); backdrop-filter: blur(18px); }
 .vibrant-band { background: linear-gradient(90deg, #e53238 0 24%, #f5af02 24% 49%, #05ce78 49% 74%, #0064d2 74% 100%); }
+.parallax-image { transform: scale(1.08); transform-origin: center; will-change: transform; }
+.motion-ready .scroll-card { opacity: 0; transform: translateY(28px) scale(.985); transition: opacity .72s cubic-bezier(.2,.8,.2,1), transform .72s cubic-bezier(.2,.8,.2,1), box-shadow .2s ease, border-color .2s ease; transition-delay: var(--stagger-delay, 0ms); }
+.motion-ready .scroll-card.in-view { opacity: 1; transform: translateY(0) scale(1); }
+@media (prefers-reduced-motion: reduce) {
+  .motion-ready .scroll-card, .motion-ready .scroll-card.in-view, .parallax-image { opacity: 1; transform: none; transition: none; animation: none; }
+}
 @keyframes reveal-up { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes progress-in { from { transform: scaleX(0); } to { transform: scaleX(1); } }

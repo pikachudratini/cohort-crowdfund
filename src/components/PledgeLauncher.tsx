@@ -76,7 +76,6 @@ export function PledgeLauncher({ session }: PledgeLauncherProps) {
         >
           I am ready to join
         </button>
-        <p className="mt-3 text-center text-xs font-semibold text-navy">$0 due today. Charged only if the session funds.</p>
       </div>
 
       <button

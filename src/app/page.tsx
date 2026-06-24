@@ -3,7 +3,9 @@ import Link from 'next/link';
 import { ArrowRight, CheckCircle2, Crown, ShieldCheck, Sparkles, Users } from 'lucide-react';
 import { sessions } from '@/lib/mock-data';
 import { BrandLogo } from '@/components/BrandLogo';
-import { amountRaisedCents, daysLeft, formatCurrency, percentFunded, pledgeRankings, unlockedMilestones, uniqueBackerCount } from '@/lib/funding';
+import { CountdownTimer } from '@/components/CountdownTimer';
+import { ScrollEffects } from '@/components/ScrollEffects';
+import { amountRaisedCents, formatCurrency, percentFunded, pledgeRankings, unlockedMilestones, uniqueBackerCount } from '@/lib/funding';
 import type { Session } from '@/lib/types';
 
 const modeLabels: Record<Session['campaignMode'], string> = {
@@ -53,9 +55,9 @@ function SessionCard({ session }: { session: Session }) {
   const nextMilestone = unlockedMilestones(session.milestones, raised).find((milestone) => !milestone.unlocked);
 
   return (
-    <Link href={`/sessions/${session.id}`} className="group reveal block overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-stripe transition duration-200 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl">
+    <Link href={`/sessions/${session.id}`} className="group scroll-card block overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-stripe transition duration-200 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl">
       <div className="relative h-48 overflow-hidden bg-slate-100">
-        <img src={session.coverImageUrl} alt="" className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+        <img src={session.coverImageUrl} alt="" className="parallax-image h-full w-full object-cover transition duration-500 group-hover:scale-[1.11]" />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/65 via-transparent to-transparent" />
         <div className="absolute left-4 top-4"><ModeBadge mode={session.campaignMode} /></div>
       </div>
@@ -70,7 +72,7 @@ function SessionCard({ session }: { session: Session }) {
         <div className="grid grid-cols-3 gap-3 text-sm">
           <div className="rounded-2xl bg-slate-50 p-3"><p className="text-xl font-bold text-navy">{percent}%</p><p className="text-slate-500">funded</p></div>
           <div className="rounded-2xl bg-slate-50 p-3"><p className="text-xl font-bold text-navy">{backers}</p><p className="text-slate-500">backers</p></div>
-          <div className="rounded-2xl bg-slate-50 p-3"><p className="text-xl font-bold text-navy">{daysLeft(session.deadline)}</p><p className="text-slate-500">days</p></div>
+          <div className="rounded-2xl bg-slate-50 p-3"><CountdownTimer deadline={session.deadline} compact /></div>
         </div>
         <div className="rounded-2xl border border-slate-200 bg-white p-4">
           <p className="font-bold text-navy">{formatCurrency(raised)} raised</p>
@@ -100,7 +102,7 @@ function AdvancedDemo() {
             ['Top bidder prize', 'Highest or top-N backers can unlock a one-on-one, teardown, or private implementation review.'],
             ['Hybrid campaigns', 'Pool money to fund the lesson while limited premium slots make the offer richer.'],
           ].map(([title, body]) => (
-            <div key={title} className="rounded-3xl border border-sky/20 bg-ivory p-7 shadow-stripe">
+            <div key={title} className="scroll-card rounded-3xl border border-sky/20 bg-ivory p-7 shadow-stripe">
               <div className="flex items-center gap-3">
                 <Sparkles className="h-7 w-7 shrink-0 text-gold" />
                 <h3 className="text-2xl font-bold tracking-[-.02em]">{title}</h3>
@@ -115,7 +117,7 @@ function AdvancedDemo() {
             const milestones = unlockedMilestones(session.milestones, raised);
             const topBid = pledgeRankings(session.pledges)[0]?.totalPledgedCents ?? 0;
             return (
-              <div key={session.id} className="rounded-3xl border border-gold/30 bg-white p-7 shadow-stripe">
+              <div key={session.id} className="scroll-card rounded-3xl border border-gold/30 bg-white p-7 shadow-stripe">
                 <div className="flex items-center justify-between gap-3"><ModeBadge mode={session.campaignMode} /></div>
                 <h3 className="mt-5 text-3xl font-bold tracking-[-.03em]">{session.title}</h3>
                 <div className="mt-6 space-y-3">
@@ -136,8 +138,7 @@ function AdvancedDemo() {
                         <p className="mt-1 text-2xl font-bold text-gold">{formatCurrency(topBid)}</p>
                       </div>
                       <div className="rounded-2xl border border-sky/20 bg-white p-4">
-                        <p className="text-xs font-semibold uppercase tracking-[.16em] text-graphite">Bid closes in</p>
-                        <p className="mt-1 text-2xl font-bold text-navy">{daysLeft(session.deadline)} days</p>
+                        <CountdownTimer deadline={session.deadline} label="Bid closes in" />
                       </div>
                     </div>
                   </div>
@@ -186,7 +187,7 @@ function FundedEvents() {
       </div>
       <div className="mt-10 grid gap-6 lg:grid-cols-2">
         {fundedEvents.map((event) => (
-          <div key={event.title} className="rounded-3xl border border-mint/20 bg-white p-7 shadow-stripe">
+          <div key={event.title} className="scroll-card rounded-3xl border border-mint/20 bg-white p-7 shadow-stripe">
             <div className="inline-flex rounded-full bg-mint/10 px-3 py-1 text-xs font-bold uppercase tracking-[.14em] text-mint">Funded</div>
             <h3 className="mt-4 text-3xl font-bold tracking-[-.03em] text-navy">{event.title}</h3>
             <p className="mt-2 font-semibold text-coral">{event.date}</p>
@@ -200,7 +201,7 @@ function FundedEvents() {
                       <p className="font-bold">{title}</p>
                       <p className="text-sm">{price}</p>
                     </div>
-                    <span className={`rounded-full px-3 py-1 text-xs font-bold ${soldOut ? 'bg-slate-200 text-slate-500' : 'bg-mint/10 text-mint'}`}>{status}</span>
+                    <span className={`inline-flex min-w-20 items-center justify-center rounded-full px-3 py-1 text-center text-xs font-bold ${soldOut ? 'bg-slate-200 text-slate-500' : 'bg-mint/10 text-mint'}`}>{status}</span>
                   </div>
                 );
               })}
@@ -217,6 +218,7 @@ export default function HomePage() {
   const featured = sessions[0];
   return (
     <main className="min-h-screen overflow-hidden bg-ivory text-navy">
+      <ScrollEffects />
       <nav className="sticky top-0 z-50 border-b border-slate-200 bg-white/88 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <BrandLogo />
@@ -237,12 +239,12 @@ export default function HomePage() {
               <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-600 md:text-xl">Experts propose high-value live sessions. Backers pledge together. If the campaign funds, the session happens. If not, nobody pays.</p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row"><PrimaryButton href="#sessions">Explore sessions</PrimaryButton><SecondaryButton href="/dashboard">Start as an expert</SecondaryButton></div>
               <div className="mt-8 grid max-w-xl gap-3 text-sm text-slate-600 sm:grid-cols-3">
-                <div className="flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-mint" /> Card authorized only</div>
+                <div className="flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-mint" /> Only pay if funded</div>
                 <div className="flex items-center gap-2"><Users className="h-4 w-4 text-violet" /> Back with a group</div>
                 <div className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-coral" /> Unlock live date</div>
               </div>
             </div>
-            <div className="glass reveal rounded-3xl p-5 shadow-stripe">
+            <div className="glass reveal scroll-card rounded-3xl p-5 shadow-stripe">
               <div className="rounded-3xl bg-white p-6 text-navy shadow-sm">
                 <div className="flex items-center justify-between"><p className="text-sm font-bold uppercase tracking-[.14em] text-coral">Featured</p><Users className="h-5 w-5 text-violet" /></div>
                 <h2 className="mt-10 text-4xl font-bold leading-tight tracking-[-.035em]">{featured.title}</h2>
@@ -251,7 +253,7 @@ export default function HomePage() {
                 <div className="mt-6 grid grid-cols-3 gap-3">
                   <div className="rounded-2xl bg-slate-50 p-4"><p className="text-2xl font-bold">{percentFunded(featured)}%</p><p className="text-sm text-slate-500">funded</p></div>
                   <div className="rounded-2xl bg-slate-50 p-4"><p className="text-2xl font-bold">{uniqueBackerCount(featured.pledges)}</p><p className="text-sm text-slate-500">backers</p></div>
-                  <div className="rounded-2xl bg-slate-50 p-4"><p className="text-2xl font-bold">{daysLeft(featured.deadline)}</p><p className="text-sm text-slate-500">days</p></div>
+                  <div className="rounded-2xl bg-slate-50 p-4"><CountdownTimer deadline={featured.deadline} compact /></div>
                 </div>
                 <div className="mt-6"><PrimaryButton href={`/sessions/${featured.id}`}>View campaign</PrimaryButton></div>
               </div>

@@ -45,8 +45,9 @@ export default async function MockStripeCheckout({ searchParams }: { searchParam
               <div className="mt-4 flex justify-between text-lg font-semibold"><span>Charged if funded</span><span>{formatCurrency(pledgeAmountCents)}</span></div>
             </div>
           </div>
-          <div className="mt-6 rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-800">
-            <ShieldCheck className="mb-2 h-5 w-5" /> Demo mode: no real payment is processed.
+          <div className="mt-6 flex items-start gap-3 rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-800">
+            <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0" />
+            <p><span className="font-semibold">Your card is authorized today.</span> You are charged only if the session funds. Demo mode: no real payment is processed.</p>
           </div>
         </aside>
 

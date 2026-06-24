@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
-import { CheckCircle2, CreditCard, ShieldCheck, Trophy } from 'lucide-react';
+import { CheckCircle2, CreditCard, Trophy } from 'lucide-react';
 import { getSession } from '@/lib/mock-data';
 import { formatCurrency } from '@/lib/funding';
 
@@ -42,10 +42,6 @@ export default async function PledgePage({ searchParams }: { searchParams: Promi
                   Your custom amount counts toward the top contributor bonus for this session.
                 </div>
               ) : null}
-              <div className="mt-6 rounded-2xl border border-mint/25 bg-mint/10 p-4 text-sm font-medium text-navy">
-                <ShieldCheck className="mb-2 h-5 w-5 text-mint" />
-                Your card is authorized today and charged only if this session funds.
-              </div>
             </div>
           </section>
 
@@ -54,7 +50,7 @@ export default async function PledgePage({ searchParams }: { searchParams: Promi
             <h2 className="mt-5 text-2xl font-semibold">Safe all-or-nothing pledge</h2>
             <div className="mt-6 space-y-4 text-graphite">
               <p>You are charged only if the funding goal and minimum backer count are met by the deadline.</p>
-              <p>If the session does not fund, the authorization is canceled and nothing is charged.</p>
+              <p>If the session does not fund, nothing is charged.</p>
               <p>This demo uses a mocked Stripe checkout screen so you can show the flow without entering a real card.</p>
             </div>
             <div className="mt-6 rounded-2xl border border-gold/35 bg-gold/10 p-4 text-sm text-graphite">

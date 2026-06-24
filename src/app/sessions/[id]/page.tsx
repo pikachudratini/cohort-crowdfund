@@ -1,9 +1,11 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowLeft, CheckCircle2, Crown, Lock, ShieldCheck } from 'lucide-react';
+import { ArrowLeft, CheckCircle2, Crown, Lock } from 'lucide-react';
 import { getSession } from '@/lib/mock-data';
+import { CountdownTimer } from '@/components/CountdownTimer';
 import { PledgeLauncher } from '@/components/PledgeLauncher';
-import { amountRaisedCents, daysLeft, formatCurrency, percentFunded, pledgeRankings, unlockedMilestones, uniqueBackerCount } from '@/lib/funding';
+import { ScrollEffects } from '@/components/ScrollEffects';
+import { amountRaisedCents, formatCurrency, percentFunded, pledgeRankings, unlockedMilestones, uniqueBackerCount } from '@/lib/funding';
 
 export default async function SessionDetail({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -16,31 +18,32 @@ export default async function SessionDetail({ params }: { params: Promise<{ id: 
 
   return (
     <main className="min-h-screen bg-ivory text-navy">
+      <ScrollEffects />
       <nav className="border-b border-sky/15 bg-white/90 px-6 py-4 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between"><Link href="/" className="inline-flex items-center gap-2 text-sm font-semibold text-graphite"><ArrowLeft className="h-4 w-4" />Back to sessions</Link><Link href="/dashboard" className="rounded-full bg-mint px-4 py-2 text-sm font-semibold text-white shadow-glow">Expert dashboard</Link></div>
       </nav>
       <div className="vibrant-band h-2" />
       <section className="mx-auto grid max-w-7xl gap-10 px-6 py-10 lg:grid-cols-[1.05fr_.95fr]">
         <div>
-          <div className="mb-6 rounded-[30px] border border-sky/20 bg-white p-6 shadow-stripe backdrop-blur-xl">
+          <div className="scroll-card mb-6 rounded-[30px] border border-sky/20 bg-white p-6 shadow-stripe backdrop-blur-xl">
             <p className="text-sm font-semibold uppercase tracking-[.22em] text-coral">Campaign details</p>
             <h1 className="mt-3 text-4xl font-semibold leading-none tracking-[-.055em] md:text-5xl">{session.title}</h1>
             <p className="mt-3 text-graphite">with {session.expert.name}</p>
           </div>
-          <div className="overflow-hidden rounded-[34px] border border-sky/20 bg-white shadow-stripe"><img src={session.coverImageUrl} alt="" className="h-[420px] w-full object-cover" /></div>
-          <div className="mt-10 rounded-[30px] border border-sky/20 bg-white p-8 shadow-stripe">
+          <div className="overflow-hidden rounded-[34px] border border-sky/20 bg-white shadow-stripe"><img src={session.coverImageUrl} alt="" className="parallax-image h-[420px] w-full object-cover" /></div>
+          <div className="scroll-card mt-10 rounded-[30px] border border-sky/20 bg-white p-8 shadow-stripe">
             <p className="text-sm font-semibold uppercase tracking-[.24em] text-coral">The story</p>
             <h2 className="mt-4 text-3xl font-semibold tracking-[-.04em]">What you will learn</h2>
             <p className="mt-5 text-lg leading-8 text-graphite">{session.description}</p>
           </div>
-          <div className="mt-6 rounded-[30px] border border-sky/20 bg-white p-8 shadow-stripe">
+          <div className="scroll-card mt-6 rounded-[30px] border border-sky/20 bg-white p-8 shadow-stripe">
             <div className="flex items-center gap-4"><img src={session.expert.avatarUrl} alt="" className="h-16 w-16 rounded-full object-cover" /><div><p className="text-lg font-semibold">{session.expert.name}</p><p className="text-graphite">{session.expert.headline}</p></div></div>
             <p className="mt-5 text-graphite">{session.expert.bio}</p>
           </div>
         </div>
 
         <aside className="lg:sticky lg:top-6 lg:self-start">
-          <div className="rounded-[34px] border border-mint/25 bg-white p-7 shadow-stripe backdrop-blur-xl">
+          <div className="scroll-card rounded-[34px] border border-mint/25 bg-white p-7 shadow-stripe backdrop-blur-xl">
             <div className="flex flex-wrap gap-2"><span className="rounded-full border border-mint/25 bg-mint/10 px-3 py-1 text-xs font-semibold text-navy">{session.campaignMode.replace('_', ' ')}</span></div>
             <h2 className="mt-5 text-4xl font-semibold leading-none tracking-[-.055em] md:text-5xl">{session.title}</h2>
             <p className="mt-3 text-graphite">with {session.expert.name}</p>
@@ -48,10 +51,9 @@ export default async function SessionDetail({ params }: { params: Promise<{ id: 
             <div className="mt-6 grid grid-cols-3 gap-3">
               <div className="rounded-2xl bg-ivory p-4"><p className="text-2xl font-semibold">{percent}%</p><p className="text-xs text-graphite">funded</p></div>
               <div className="rounded-2xl bg-ivory p-4"><p className="text-2xl font-semibold">{uniqueBackerCount(session.pledges)}</p><p className="text-xs text-graphite">backers</p></div>
-              <div className="rounded-2xl bg-ivory p-4"><p className="text-2xl font-semibold">{daysLeft(session.deadline)}</p><p className="text-xs text-graphite">days left</p></div>
+              <div className="rounded-2xl bg-ivory p-4"><CountdownTimer deadline={session.deadline} compact /></div>
             </div>
             <p className="mt-5 text-lg font-semibold">{formatCurrency(raised)} raised of {formatCurrency(session.fundingGoalCents)}</p>
-            <div className="mt-5 rounded-2xl border border-mint/25 bg-mint/10 p-4 text-sm font-semibold text-navy"><ShieldCheck className="mb-2 h-5 w-5 text-mint" />Your card is authorized today and charged only if this session funds.</div>
           </div>
 
           <div className="mt-6">
@@ -107,8 +109,7 @@ export default async function SessionDetail({ params }: { params: Promise<{ id: 
                   <p className="mt-1 text-2xl font-bold text-gold">{formatCurrency(topBid)}</p>
                 </div>
                 <div className="rounded-2xl border border-sky/20 bg-white p-4">
-                  <p className="text-xs font-semibold uppercase tracking-[.16em] text-graphite">Bid closes in</p>
-                  <p className="mt-1 text-2xl font-bold text-navy">{daysLeft(session.deadline)} days</p>
+                  <CountdownTimer deadline={session.deadline} label="Bid closes in" />
                 </div>
               </div>
             </div>
