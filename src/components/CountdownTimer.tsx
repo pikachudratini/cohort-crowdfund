@@ -48,20 +48,23 @@ export function CountdownTimer({ deadline, label = 'Time left', compact = false 
   }
 
   const units = [
-    ['Days', timeLeft.days],
-    ['Hours', timeLeft.hours],
-    ['Minutes', timeLeft.minutes],
-    ['Seconds', timeLeft.seconds],
+    ['Days', 'Days', timeLeft.days],
+    ['Hours', 'Hours', timeLeft.hours],
+    ['Minutes', 'Min', timeLeft.minutes],
+    ['Seconds', 'Sec', timeLeft.seconds],
   ] as const;
 
   return (
     <div aria-label={`${label}: ${timeLeft.days} days ${timeLeft.hours} hours ${timeLeft.minutes} minutes ${timeLeft.seconds} seconds`}>
       <p className="text-xs font-semibold uppercase tracking-[.16em] text-graphite">{label}</p>
       <div className="mt-3 grid grid-cols-4 gap-2">
-        {units.map(([unit, value]) => (
-          <div key={unit} className="rounded-2xl border border-sky/20 bg-ivory px-2 py-3 text-center">
+        {units.map(([unit, shortUnit, value]) => (
+          <div key={unit} className="min-w-0 rounded-2xl border border-sky/20 bg-ivory px-1.5 py-3 text-center sm:px-2">
             <p className="text-2xl font-bold text-navy">{unit === 'Days' ? value : twoDigits(value)}</p>
-            <p className="mt-1 text-[10px] font-bold uppercase tracking-[.12em] text-graphite">{unit}</p>
+            <p className="mt-1 truncate text-[10px] font-bold uppercase tracking-[.06em] text-graphite sm:tracking-[.12em]">
+              <span className="sm:hidden">{shortUnit}</span>
+              <span className="hidden sm:inline">{unit}</span>
+            </p>
           </div>
         ))}
       </div>
