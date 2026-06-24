@@ -7,6 +7,13 @@ import { PledgeLauncher } from '@/components/PledgeLauncher';
 import { ScrollEffects } from '@/components/ScrollEffects';
 import { amountRaisedCents, formatCurrency, percentFunded, pledgeRankings, unlockedMilestones, uniqueBackerCount } from '@/lib/funding';
 
+const modeLabels = {
+  group_fund: 'Group funded',
+  bonus_ladder: 'Get extra bonuses',
+  top_bidder: 'Top contributor bonus',
+  hybrid: 'Hybrid rewards',
+};
+
 export default async function SessionDetail({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const session = getSession(id);
@@ -44,7 +51,7 @@ export default async function SessionDetail({ params }: { params: Promise<{ id: 
 
         <aside className="lg:sticky lg:top-6 lg:self-start">
           <div className="scroll-card rounded-[34px] border border-mint/25 bg-white p-7 shadow-stripe backdrop-blur-xl">
-            <div className="flex flex-wrap gap-2"><span className="rounded-full border border-mint/25 bg-mint/10 px-3 py-1 text-xs font-semibold text-navy">{session.campaignMode.replace('_', ' ')}</span></div>
+            <div className="flex flex-wrap gap-2"><span className="rounded-full border border-mint/25 bg-mint/10 px-3 py-1 text-xs font-semibold text-navy">{modeLabels[session.campaignMode]}</span></div>
             <h2 className="mt-5 text-4xl font-semibold leading-none tracking-[-.055em] md:text-5xl">{session.title}</h2>
             <p className="mt-3 text-graphite">with {session.expert.name}</p>
             <div className="mt-7 h-3 overflow-hidden rounded-full bg-sky/15"><div className="progress-fill h-full rounded-full bg-gradient-to-r from-coral via-gold to-mint" style={{ width: `${percent}%` }} /></div>

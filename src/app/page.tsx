@@ -10,7 +10,7 @@ import type { Session } from '@/lib/types';
 
 const modeLabels: Record<Session['campaignMode'], string> = {
   group_fund: 'Group funded',
-  bonus_ladder: 'Bonus ladder',
+  bonus_ladder: 'Get extra bonuses',
   top_bidder: 'Top bidder',
   hybrid: 'Hybrid',
 };
@@ -98,7 +98,7 @@ function AdvancedDemo() {
         </div>
         <div className="mt-12 grid gap-5 md:grid-cols-3">
           {[
-            ['Bonus ladder', 'More funding unlocks recordings, templates, extra Q&A, and bonus trainings for every backer.'],
+            ['Get extra bonuses', 'More funding unlocks recordings, templates, extra Q&A, and bonus trainings for every backer.'],
             ['Top bidder prize', 'Highest or top-N backers can unlock a one-on-one, teardown, or private implementation review.'],
             ['Hybrid campaigns', 'Pool money to fund the lesson while limited premium slots make the offer richer.'],
           ].map(([title, body]) => (
