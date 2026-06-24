@@ -276,6 +276,18 @@ export default function HomePage() {
 
       <FundedEvents />
 
+      <section className="mx-auto max-w-5xl px-6 pb-20 text-center">
+        <div className="scroll-card rounded-[32px] border border-sky/20 bg-white p-8 shadow-stripe md:p-10">
+          <p className="text-sm font-bold uppercase tracking-[.16em] text-mint">For experts</p>
+          <h2 className="mt-3 text-3xl font-bold tracking-[-.03em] text-navy md:text-4xl">Want to launch your own funded workshop?</h2>
+          <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-slate-600 md:text-lg">Open the expert dashboard to draft a session, set pledge levels, and see how your campaign could fund before you teach.</p>
+          <Link href="/dashboard" className="mt-7 inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-mint px-6 py-3 text-base font-semibold text-white shadow-glow transition hover:-translate-y-0.5 hover:bg-[#006f45]">
+            Go to expert dashboard
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+      </section>
+
       <footer className="border-t border-slate-200 bg-white px-6 py-10 text-center text-sm text-slate-500">Cohort CrowdFund, built as a marketplace for live expert lessons funded by the room.</footer>
     </main>
   );
