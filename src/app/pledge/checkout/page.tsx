@@ -1,40 +1,47 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
-import { ArrowLeft, CreditCard, Lock, ShieldCheck } from 'lucide-react';
+import { ArrowLeft, CreditCard, Lock, ShieldCheck, Trophy } from 'lucide-react';
 import { getSession } from '@/lib/mock-data';
 import { formatCurrency } from '@/lib/funding';
 
-export default async function MockStripeCheckout({ searchParams }: { searchParams: Promise<{ session?: string; tier?: string }> }) {
+export default async function MockStripeCheckout({ searchParams }: { searchParams: Promise<{ session?: string; tier?: string; amountCents?: string }> }) {
   const params = await searchParams;
   const session = params.session ? getSession(params.session) : undefined;
   if (!session) redirect('/');
   const tier = session.tiers.find((item) => item.id === params.tier) ?? session.tiers[0];
-  const successHref = `/pledge/success?session=${session.id}&amount=${tier.amountCents}`;
+  const pledgeAmountCents = params.amountCents ? Math.max(100, Number(params.amountCents)) : tier.amountCents;
+  const isCustomBid = pledgeAmountCents !== tier.amountCents;
+  const successHref = `/pledge/success?session=${session.id}&amount=${pledgeAmountCents}`;
 
   return (
     <main className="min-h-screen bg-[#f6f8fb] px-4 py-8 text-slate-950 md:px-6">
       <div className="mx-auto grid max-w-5xl overflow-hidden rounded-[28px] bg-white shadow-2xl ring-1 ring-slate-200 lg:grid-cols-[.88fr_1.12fr]">
         <aside className="bg-slate-50 p-8 md:p-10">
-          <Link href={`/pledge?session=${session.id}&tier=${tier.id}`} className="inline-flex items-center gap-2 text-sm font-medium text-slate-500 hover:text-slate-900">
+          <Link href={`/pledge?session=${session.id}&tier=${tier.id}&amountCents=${pledgeAmountCents}`} className="inline-flex items-center gap-2 text-sm font-medium text-slate-500 hover:text-slate-900">
             <ArrowLeft className="h-4 w-4" /> Back
           </Link>
           <div className="mt-12">
-            <p className="text-sm font-medium text-slate-500">Mock Stripe Checkout</p>
+            <p className="text-sm font-medium text-slate-500">Payment mockup</p>
             <h1 className="mt-3 text-3xl font-semibold tracking-[-.035em]">Authorize your pledge</h1>
             <p className="mt-2 text-slate-600">{session.title}</p>
           </div>
           <div className="mt-10 rounded-3xl border border-slate-200 bg-white p-6">
             <div className="flex items-start justify-between gap-4">
               <div>
-                <p className="font-semibold">{tier.title}</p>
-                <p className="mt-1 text-sm text-slate-500">All-or-nothing workshop pledge</p>
+                <p className="font-semibold">{isCustomBid ? 'Custom pledge' : tier.title}</p>
+                <p className="mt-1 text-sm text-slate-500">Qualifies for {tier.title}</p>
               </div>
-              <p className="text-xl font-semibold">{formatCurrency(tier.amountCents)}</p>
+              <p className="text-xl font-semibold">{formatCurrency(pledgeAmountCents)}</p>
             </div>
+            {isCustomBid ? (
+              <div className="mt-5 rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
+                <Trophy className="mb-2 h-5 w-5" /> This custom pledge counts toward the highest contributor bonus.
+              </div>
+            ) : null}
             <div className="mt-5 border-t border-slate-200 pt-5">
               <div className="flex justify-between text-sm text-slate-500"><span>Due today</span><span>$0.00</span></div>
-              <div className="mt-2 flex justify-between text-sm text-slate-500"><span>Authorized amount</span><span>{formatCurrency(tier.amountCents)}</span></div>
-              <div className="mt-4 flex justify-between text-lg font-semibold"><span>Charged if funded</span><span>{formatCurrency(tier.amountCents)}</span></div>
+              <div className="mt-2 flex justify-between text-sm text-slate-500"><span>Authorized amount</span><span>{formatCurrency(pledgeAmountCents)}</span></div>
+              <div className="mt-4 flex justify-between text-lg font-semibold"><span>Charged if funded</span><span>{formatCurrency(pledgeAmountCents)}</span></div>
             </div>
           </div>
           <div className="mt-6 rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-800">
@@ -82,7 +89,7 @@ export default async function MockStripeCheckout({ searchParams }: { searchParam
             </Link>
 
             <p className="text-center text-xs leading-5 text-slate-500">
-              This is a visual mockup for demos. In production, this step would be hosted by Stripe, or PayPal Checkout, and connected to manual capture.
+              This is a visual mockup for demos. In production, this step would be hosted by Stripe or PayPal Checkout and connected to manual capture.
             </p>
           </form>
         </section>

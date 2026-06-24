@@ -55,16 +55,31 @@ export default async function SessionDetail({ params }: { params: Promise<{ id: 
                   <div className="flex items-start justify-between gap-4"><div><h3 className="text-2xl font-semibold tracking-[-.03em]">{tier.title}</h3><p className="mt-1 text-white/55">{tier.description}</p></div><p className="text-xl font-semibold text-gold">{formatCurrency(tier.amountCents)}</p></div>
                   <ul className="mt-4 space-y-2 text-sm text-white/65">{tier.perks.map((perk) => <li key={perk} className="flex gap-2"><CheckCircle2 className="h-4 w-4 text-mint" />{perk}</li>)}</ul>
                   {remaining !== null ? <p className="mt-4 text-sm text-coral">{remaining} spots remaining</p> : null}
-                  <Link href={`/pledge?session=${session.id}&tier=${tier.id}`} className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-white px-5 py-3 font-semibold text-ink">Back this session</Link>
+                  <Link href={`/pledge?session=${session.id}&tier=${tier.id}`} className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-white px-5 py-3 font-semibold text-ink">Choose this level</Link>
                 </div>
               );
             })}
           </div>
 
+          {session.prizes.length ? (
+            <form action="/pledge" className="mt-6 rounded-[28px] border border-gold/45 bg-gold/10 p-6 shadow-[0_0_35px_rgba(244,201,93,.10)]">
+              <input type="hidden" name="session" value={session.id} />
+              <h3 className="text-xl font-semibold text-gold">Bid your own pledge</h3>
+              <p className="mt-2 text-sm leading-6 text-white/70">Enter any amount. Your pledge qualifies for the highest level it reaches, and the highest contributor wins the extra bonus bundle.</p>
+              <label className="mt-5 block text-sm font-semibold text-white/70">Your pledge amount
+                <div className="mt-2 flex overflow-hidden rounded-2xl border border-gold/35 bg-black/25">
+                  <span className="flex items-center px-4 text-gold">$</span>
+                  <input name="bid" type="number" min="1" step="1" placeholder="250" className="w-full bg-transparent px-2 py-4 text-lg font-semibold text-white outline-none placeholder:text-white/30" />
+                </div>
+              </label>
+              <button className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-gold px-5 py-3 font-semibold text-ink">Continue with custom pledge</button>
+            </form>
+          ) : null}
+
           {milestones.length ? (
             <div className="mt-6 rounded-[28px] border border-gold/40 bg-gold/10 p-6 shadow-stripe">
-              <h3 className="text-xl font-semibold text-gold">Gold bonus ladder</h3>
-              <p className="mt-2 text-sm leading-6 text-white/65">Every gold-outlined bonus shows how close the room is to unlocking the next mouth-watering upgrade for all backers.</p>
+              <h3 className="text-xl font-semibold text-gold">Group bonus unlocks</h3>
+              <p className="mt-2 text-sm leading-6 text-white/65">Each gold-outlined unlock shows how close the room is to adding another upgrade for every backer.</p>
               <div className="mt-4 space-y-4">
                 {milestones.map((milestone) => {
                   const milestoneProgress = Math.min(100, Math.round((raised / milestone.thresholdCents) * 100));
@@ -88,7 +103,7 @@ export default async function SessionDetail({ params }: { params: Promise<{ id: 
 
           {session.bonuses.length ? (
             <div className="mt-6 rounded-[28px] border border-gold/35 bg-white/[0.045] p-6">
-              <h3 className="text-xl font-semibold text-gold">Bonus names built to sell</h3>
+              <h3 className="text-xl font-semibold text-gold">Included bonus tools</h3>
               <div className="mt-4 space-y-3">
                 {session.bonuses.map((bonus) => (
                   <div key={bonus.id} className="rounded-2xl border border-gold/30 bg-gold/10 p-4">
