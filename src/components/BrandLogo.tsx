@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+const basePath = process.env.NEXT_BASE_PATH || '';
 
 export function BrandLogo() {
   return (
