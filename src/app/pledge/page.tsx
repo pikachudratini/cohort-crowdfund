@@ -60,7 +60,7 @@ export default async function PledgePage({ searchParams }: { searchParams: Promi
             <div className="mt-6 rounded-2xl border border-gold/35 bg-gold/10 p-4 text-sm text-graphite">
               Safety: no live payment is captured in this demo. A production version would use Stripe Checkout or manual capture with real test/live keys.
             </div>
-            <Link href={checkoutHref} className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-mint px-6 py-4 font-semibold text-navy shadow-glow">Continue to payment mockup</Link>
+            <Link href={checkoutHref} className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-mint px-6 py-4 font-semibold text-white shadow-glow">Continue to payment mockup</Link>
           </aside>
         </div>
       </div>

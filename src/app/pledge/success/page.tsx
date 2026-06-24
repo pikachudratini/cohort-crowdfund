@@ -12,7 +12,7 @@ export default async function SuccessPage({ searchParams }: { searchParams: Prom
         <CheckCircle2 className="mx-auto h-14 w-14 text-mint" />
         <h1 className="mt-6 text-4xl font-semibold tracking-[-.05em]">Pledge authorized</h1>
         <p className="mt-4 text-lg text-graphite">Your {formatCurrency(amount)} pledge is authorized. You are charged only if the session funds before the deadline.</p>
-        <Link href={params.session ? `/sessions/${params.session}` : '/'} className="mt-8 inline-flex rounded-full bg-mint px-6 py-4 font-semibold text-navy shadow-glow">Return to session</Link>
+        <Link href={params.session ? `/sessions/${params.session}` : '/'} className="mt-8 inline-flex rounded-full bg-mint px-6 py-4 font-semibold text-white shadow-glow">Return to session</Link>
       </section>
     </main>
   );

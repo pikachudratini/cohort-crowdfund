@@ -8,7 +8,7 @@ export default function DashboardPage() {
     <main className="min-h-screen bg-ivory px-6 py-10 text-navy">
       <div className="vibrant-band fixed inset-x-0 top-0 h-2" />
       <div className="mx-auto max-w-7xl">
-        <div className="flex items-center justify-between gap-4"><Link href="/" className="text-sm font-semibold text-graphite">Home</Link><button className="inline-flex items-center gap-2 rounded-full bg-mint px-5 py-3 font-semibold text-navy shadow-glow"><Plus className="h-4 w-4" />New session</button></div>
+        <div className="flex items-center justify-between gap-4"><Link href="/" className="text-sm font-semibold text-graphite">Home</Link><button className="inline-flex items-center gap-2 rounded-full bg-mint px-5 py-3 font-semibold text-white shadow-glow"><Plus className="h-4 w-4" />New session</button></div>
         <section className="mt-10 rounded-[38px] border border-sky/20 bg-white p-8 shadow-stripe">
           <p className="text-sm font-semibold uppercase tracking-[.24em] text-coral">Expert dashboard</p>
           <h1 className="mt-4 text-5xl font-semibold tracking-[-.06em]">Build a lesson campaign in two versions.</h1>

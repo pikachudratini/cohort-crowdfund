@@ -17,7 +17,7 @@ export default async function SessionDetail({ params }: { params: Promise<{ id: 
   return (
     <main className="min-h-screen bg-ivory text-navy">
       <nav className="border-b border-sky/15 bg-white/90 px-6 py-4 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-7xl items-center justify-between"><Link href="/" className="inline-flex items-center gap-2 text-sm font-semibold text-graphite"><ArrowLeft className="h-4 w-4" />Back to sessions</Link><Link href="/dashboard" className="rounded-full bg-mint px-4 py-2 text-sm font-semibold text-navy shadow-glow">Expert dashboard</Link></div>
+        <div className="mx-auto flex max-w-7xl items-center justify-between"><Link href="/" className="inline-flex items-center gap-2 text-sm font-semibold text-graphite"><ArrowLeft className="h-4 w-4" />Back to sessions</Link><Link href="/dashboard" className="rounded-full bg-mint px-4 py-2 text-sm font-semibold text-white shadow-glow">Expert dashboard</Link></div>
       </nav>
       <div className="vibrant-band h-2" />
       <section className="mx-auto grid max-w-7xl gap-10 px-6 py-10 lg:grid-cols-[1.05fr_.95fr]">

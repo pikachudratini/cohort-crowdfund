@@ -76,7 +76,7 @@ export default async function MockStripeCheckout({ searchParams }: { searchParam
               <input readOnly value="United States" className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none" />
             </label>
 
-            <button className="flex w-full items-center justify-center gap-2 rounded-xl bg-mint px-6 py-4 font-semibold text-navy shadow-glow transition hover:bg-[#00b66b]">
+            <button className="flex w-full items-center justify-center gap-2 rounded-xl bg-mint px-6 py-4 font-semibold text-white shadow-glow transition hover:bg-[#006f45]">
               <Lock className="h-4 w-4" /> Authorize card pledge
             </button>
 

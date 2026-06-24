@@ -31,7 +31,7 @@ function ProgressBar({ value }: { value: number }) {
 
 function PrimaryButton({ href, children }: { href: string; children: ReactNode }) {
   return (
-    <Link href={href} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-mint px-5 py-3 text-base font-semibold text-navy shadow-glow transition hover:-translate-y-0.5 hover:bg-[#00b66b]">
+    <Link href={href} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-mint px-5 py-3 text-base font-semibold text-white shadow-glow transition hover:-translate-y-0.5 hover:bg-[#006f45]">
       {children}
       <ArrowRight className="h-4 w-4" />
     </Link>
@@ -205,7 +205,7 @@ function FundedEvents() {
                 );
               })}
             </div>
-            <Link href="#sessions" className="mt-6 inline-flex min-h-12 w-full items-center justify-center rounded-xl bg-mint px-5 py-3 text-base font-semibold text-navy shadow-glow transition hover:-translate-y-0.5 hover:bg-[#00b66b]">See open campaigns</Link>
+            <Link href="#sessions" className="mt-6 inline-flex min-h-12 w-full items-center justify-center rounded-xl bg-mint px-5 py-3 text-base font-semibold text-white shadow-glow transition hover:-translate-y-0.5 hover:bg-[#006f45]">See open campaigns</Link>
           </div>
         ))}
       </div>

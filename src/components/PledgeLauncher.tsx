@@ -72,7 +72,7 @@ export function PledgeLauncher({ session }: PledgeLauncherProps) {
         <button
           type="button"
           onClick={() => setOpen(true)}
-          className="mt-5 inline-flex min-h-14 w-full items-center justify-center rounded-full bg-mint px-5 text-base font-semibold text-navy shadow-glow transition hover:-translate-y-0.5 hover:bg-[#00b66b] focus:outline-none focus:ring-2 focus:ring-mint focus:ring-offset-2 focus:ring-offset-white"
+          className="mt-5 inline-flex min-h-14 w-full items-center justify-center rounded-full bg-mint px-5 text-base font-semibold text-white shadow-glow transition hover:-translate-y-0.5 hover:bg-[#006f45] focus:outline-none focus:ring-2 focus:ring-mint focus:ring-offset-2 focus:ring-offset-white"
         >
           I am ready to join
         </button>
@@ -93,7 +93,7 @@ export function PledgeLauncher({ session }: PledgeLauncherProps) {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="fixed inset-x-4 bottom-4 z-40 inline-flex min-h-14 items-center justify-center rounded-full bg-mint px-5 text-base font-semibold text-navy shadow-glow transition active:scale-[.98] lg:hidden"
+        className="fixed inset-x-4 bottom-4 z-40 inline-flex min-h-14 items-center justify-center rounded-full bg-mint px-5 text-base font-semibold text-white shadow-glow transition active:scale-[.98] lg:hidden"
       >
         I am ready to join
       </button>
@@ -123,7 +123,7 @@ export function PledgeLauncher({ session }: PledgeLauncherProps) {
                     </div>
                     <p className="shrink-0 text-2xl font-semibold text-gold md:mt-3">{formatCurrency(tier.amountCents)}</p>
                   </div>
-                  <span className="mt-4 inline-flex min-h-11 w-full items-center justify-center rounded-full bg-mint px-4 text-sm font-semibold text-navy transition group-hover:bg-gold">Choose this level</span>
+                  <span className="mt-4 inline-flex min-h-11 w-full items-center justify-center rounded-full bg-mint px-4 text-sm font-semibold text-white transition group-hover:bg-[#006f45]">Choose this level</span>
                 </Link>
               ))}
             </div>
@@ -140,7 +140,7 @@ export function PledgeLauncher({ session }: PledgeLauncherProps) {
                       <input id="custom-bid" name="bid" type="number" min="1" step="1" value={bid} onChange={(event) => setBid(event.target.value)} className="min-h-14 w-full bg-transparent px-2 text-lg font-semibold text-navy outline-none placeholder:text-graphite/40" />
                     </div>
                   </div>
-                  <Link href={customPledgeUrl(session.id, safeBid)} className="inline-flex min-h-14 items-center justify-center rounded-full bg-mint px-6 font-semibold text-navy transition hover:bg-[#00b66b] focus:outline-none focus:ring-2 focus:ring-mint focus:ring-offset-2 focus:ring-offset-white">
+                  <Link href={customPledgeUrl(session.id, safeBid)} className="inline-flex min-h-14 items-center justify-center rounded-full bg-mint px-6 font-semibold text-white transition hover:bg-[#006f45] focus:outline-none focus:ring-2 focus:ring-mint focus:ring-offset-2 focus:ring-offset-white">
                     Continue
                   </Link>
                 </div>
