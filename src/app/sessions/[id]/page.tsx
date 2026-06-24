@@ -21,6 +21,11 @@ export default async function SessionDetail({ params }: { params: Promise<{ id: 
       </nav>
       <section className="mx-auto grid max-w-7xl gap-10 px-6 py-10 lg:grid-cols-[1.05fr_.95fr]">
         <div>
+          <div className="mb-6 rounded-[30px] border border-white/10 bg-white/[0.055] p-6 shadow-stripe backdrop-blur-xl">
+            <p className="text-sm font-semibold uppercase tracking-[.22em] text-gold">Campaign details</p>
+            <h1 className="mt-3 text-4xl font-semibold leading-none tracking-[-.055em] md:text-5xl">{session.title}</h1>
+            <p className="mt-3 text-white/60">with {session.expert.name}</p>
+          </div>
           <div className="overflow-hidden rounded-[34px] border border-white/10 bg-white/5 shadow-stripe"><img src={session.coverImageUrl} alt="" className="h-[420px] w-full object-cover" /></div>
           <div className="mt-10 rounded-[30px] border border-white/10 bg-white/[0.045] p-8">
             <p className="text-sm font-semibold uppercase tracking-[.24em] text-gold">The story</p>
@@ -36,7 +41,7 @@ export default async function SessionDetail({ params }: { params: Promise<{ id: 
         <aside className="lg:sticky lg:top-6 lg:self-start">
           <div className="rounded-[34px] border border-white/10 bg-white/[0.06] p-7 shadow-stripe backdrop-blur-xl">
             <div className="flex flex-wrap gap-2"><span className="rounded-full bg-violet px-3 py-1 text-xs font-semibold">{session.offerVersion.toUpperCase()}</span><span className="rounded-full border border-white/10 px-3 py-1 text-xs text-white/70">{session.campaignMode.replace('_', ' ')}</span></div>
-            <h1 className="mt-5 text-4xl font-semibold leading-none tracking-[-.055em] md:text-5xl">{session.title}</h1>
+            <h2 className="mt-5 text-4xl font-semibold leading-none tracking-[-.055em] md:text-5xl">{session.title}</h2>
             <p className="mt-3 text-white/55">with {session.expert.name}</p>
             <div className="mt-7 h-3 overflow-hidden rounded-full bg-white/10"><div className="progress-fill h-full rounded-full bg-gradient-to-r from-coral via-gold to-mint" style={{ width: `${percent}%` }} /></div>
             <div className="mt-6 grid grid-cols-3 gap-3">
