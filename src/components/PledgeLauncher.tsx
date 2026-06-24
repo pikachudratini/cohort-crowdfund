@@ -105,7 +105,7 @@ export function PledgeLauncher({ session }: PledgeLauncherProps) {
               <div>
                 <p className="text-sm font-semibold uppercase tracking-[.22em] text-gold">Pick your pledge</p>
                 <h2 id="pledge-panel-title" className="mt-2 text-3xl font-semibold tracking-[-.045em]">One quick choice, then checkout.</h2>
-                <p className="mt-2 text-sm leading-6 text-graphite">Choose a standard level or bid your own amount for top contributor status.</p>
+                <p className="mt-2 text-sm leading-6 text-graphite">Choose a standard level or add a custom funding pledge to show extra support and qualify for special bonuses.</p>
               </div>
               <button ref={closeButtonRef} type="button" onClick={() => setOpen(false)} className="rounded-full border border-sky/20 bg-ivory p-3 text-navy transition hover:bg-gold/10" aria-label="Close pledge panel">
                 <X className="h-5 w-5" />
@@ -133,7 +133,7 @@ export function PledgeLauncher({ session }: PledgeLauncherProps) {
                 <div className="grid gap-4 md:grid-cols-[1fr_auto] md:items-end">
                   <div>
                     <label htmlFor="custom-bid" className="text-lg font-semibold text-gold">Or bid your own pledge</label>
-                    <p className="mt-1 text-sm leading-6 text-graphite">A custom pledge qualifies for the highest level it reaches. {topTier ? `${formatCurrency(topTier.amountCents)} or more unlocks the top level.` : ''}</p>
+                    <p className="mt-1 text-sm leading-6 text-graphite">A custom pledge qualifies for the highest level it reaches and can count toward top contributor bonuses. {topTier ? `${formatCurrency(topTier.amountCents)} or more unlocks the top level.` : ''}</p>
                     <div className="mt-3 flex overflow-hidden rounded-2xl border border-gold/35 bg-white focus-within:ring-2 focus-within:ring-gold">
                       <span className="flex items-center px-4 text-gold">$</span>
                       <input id="custom-bid" name="bid" type="number" min="1" step="1" value={bid} onChange={(event) => setBid(event.target.value)} className="min-h-14 w-full bg-transparent px-2 text-lg font-semibold text-navy outline-none placeholder:text-graphite/40" />

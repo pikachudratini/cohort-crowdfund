@@ -111,6 +111,7 @@ export default async function SessionDetail({ params }: { params: Promise<{ id: 
             <div className="scroll-card mt-6 rounded-[28px] border border-gold/45 bg-gold/10 p-6 text-center shadow-[0_0_35px_rgba(245,175,2,.16)]">
               <div className="flex items-center justify-center gap-2 text-gold"><Crown className="h-5 w-5" /><h3 className="text-xl font-semibold">Highest contributor gets extra bonuses</h3></div>
               <p className="mx-auto mt-3 max-w-md text-graphite">{session.prizes[0].description}</p>
+              <p className="mx-auto mt-3 max-w-md text-sm leading-6 text-graphite">Add a custom funding pledge to show extra support. Higher pledges can also qualify for special bonuses like the top contributor prize.</p>
               <div className="mx-auto mt-5 grid max-w-md gap-3 sm:grid-cols-2">
                 <div className="rounded-2xl border border-gold/35 bg-white p-4">
                   <p className="text-xs font-semibold uppercase tracking-[.16em] text-graphite">Current top bid</p>

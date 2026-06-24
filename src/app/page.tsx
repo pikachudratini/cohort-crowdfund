@@ -132,6 +132,7 @@ function AdvancedDemo() {
                   <div className="mt-5 rounded-2xl border border-gold/30 bg-gold/10 p-5 text-center">
                     <div className="flex items-center justify-center gap-2 text-gold"><Crown className="h-5 w-5" /><p className="font-semibold">Top bidder prize</p></div>
                     <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-graphite">{session.prizes[0].description}</p>
+                    <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-graphite">Custom funding pledges can show extra support and help qualify for special bonuses like the top contributor prize.</p>
                     <div className="mx-auto mt-4 grid max-w-md gap-3 sm:grid-cols-2">
                       <div className="rounded-2xl border border-gold/35 bg-white p-4">
                         <p className="text-xs font-semibold uppercase tracking-[.16em] text-graphite">Current top bid</p>
