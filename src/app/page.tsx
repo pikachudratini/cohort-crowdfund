@@ -5,6 +5,7 @@ import { sessions } from '@/lib/mock-data';
 import { BrandLogo } from '@/components/BrandLogo';
 import { CountdownTimer } from '@/components/CountdownTimer';
 import { ScrollEffects } from '@/components/ScrollEffects';
+import { SeeOpenCampaignsButton } from '@/components/SeeOpenCampaignsButton';
 import { amountRaisedCents, formatCurrency, percentFunded, pledgeRankings, unlockedMilestones, uniqueBackerCount } from '@/lib/funding';
 import type { Session } from '@/lib/types';
 
@@ -207,7 +208,7 @@ function FundedEvents() {
                 );
               })}
             </div>
-            <Link href="#sessions" className="mt-6 inline-flex min-h-12 w-full items-center justify-center rounded-xl bg-mint px-5 py-3 text-base font-semibold text-white shadow-glow transition hover:-translate-y-0.5 hover:bg-[#006f45]">See open campaigns</Link>
+            <SeeOpenCampaignsButton />
           </div>
         ))}
       </div>
@@ -263,7 +264,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="sessions" className="mx-auto max-w-7xl px-6 py-20">
+      <section id="sessions" className="scroll-mt-24 mx-auto max-w-7xl px-6 py-20">
         <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div><h2 className="text-4xl font-bold tracking-[-.035em] md:text-5xl">Live sessions seeking backers</h2></div>
           <div className="flex flex-wrap gap-2 text-sm font-semibold text-slate-600">{['AI', 'Sales', 'Acquisition', 'Operations'].map((item) => <span key={item} className="rounded-full border border-slate-200 bg-white px-4 py-2 shadow-sm">{item}</span>)}</div>
