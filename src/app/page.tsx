@@ -58,7 +58,7 @@ function SessionCard({ session }: { session: Session }) {
   return (
     <Link href={`/sessions/${session.id}`} className="group scroll-card block overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-stripe transition duration-200 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl">
       <div className="relative h-48 overflow-hidden bg-slate-100">
-        <img src={session.coverImageUrl} alt="" className="parallax-image h-full w-full object-cover transition duration-500 group-hover:scale-[1.11]" />
+        <img src={session.coverImageUrl} alt="" className="parallax-image h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]" />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/65 via-transparent to-transparent" />
         <div className="absolute left-4 top-4"><ModeBadge mode={session.campaignMode} /></div>
       </div>

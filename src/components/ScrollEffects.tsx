@@ -34,8 +34,8 @@ export function ScrollEffects() {
         const rect = image.getBoundingClientRect();
         if (rect.bottom < -140 || rect.top > viewportHeight + 140) return;
         const progress = (rect.top + rect.height / 2 - viewportHeight / 2) / viewportHeight;
-        const y = Math.max(-24, Math.min(24, progress * -42));
-        image.style.transform = `scale(1.1) translate3d(0, ${y}px, 0)`;
+        const y = Math.max(-6, Math.min(6, progress * -10));
+        image.style.transform = `scale(1.025) translate3d(0, ${y}px, 0)`;
       });
     };
 
