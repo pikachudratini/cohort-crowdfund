@@ -92,7 +92,7 @@ function AdvancedDemo() {
       <div className="vibrant-band absolute inset-x-0 top-0 h-2" />
       <div className="absolute -left-32 top-16 h-72 w-72 rounded-full bg-gold/25 blur-3xl" />
       <div className="absolute -right-28 bottom-10 h-80 w-80 rounded-full bg-mint/20 blur-3xl" />
-      <div className="mx-auto max-w-6xl px-6">
+      <div className="mx-auto max-w-4xl px-6">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-4xl font-bold tracking-[-.035em] md:text-5xl">Make each lesson an event worth backing.</h2>
           <p className="mt-5 text-lg leading-8 text-graphite">Creators can add bonus ladders, hot seats, top-bidder prizes, and group-buy mechanics without making the first MVP confusing.</p>
@@ -179,7 +179,7 @@ function FundedEvents() {
   ];
 
   return (
-    <section className="mx-auto max-w-5xl px-6 py-20">
+    <section className="mx-auto max-w-4xl px-6 py-20">
       <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
         <div>
           <p className="text-sm font-bold uppercase tracking-[.16em] text-mint">Fully funded and happening</p>
@@ -264,7 +264,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="sessions" className="scroll-mt-24 mx-auto max-w-6xl px-6 py-20">
+      <section id="sessions" className="scroll-mt-24 mx-auto max-w-5xl px-6 py-20">
         <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div><h2 className="text-4xl font-bold tracking-[-.035em] md:text-5xl">Live sessions seeking backers</h2></div>
           <div className="flex flex-wrap gap-2 text-sm font-semibold text-slate-600">{['AI', 'Sales', 'Acquisition', 'Operations'].map((item) => <span key={item} className="rounded-full border border-slate-200 bg-white px-4 py-2 shadow-sm">{item}</span>)}</div>
