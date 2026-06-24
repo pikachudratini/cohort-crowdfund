@@ -6,7 +6,7 @@ export const experts: Expert[] = [
   {
     id: 'exp-1',
     name: 'Marcus Johnson',
-    avatarUrl: '/avatars/marcus-johnson.svg',
+    avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&h=300&q=80',
     headline: 'Tampa operations coach for service businesses',
     bio: 'Marcus helps local operators use practical automations, better handoffs, and simple dashboards to get more output from the same team.',
     tags: ['operations', 'automation', 'service business'],
@@ -14,7 +14,7 @@ export const experts: Expert[] = [
   {
     id: 'exp-2',
     name: 'Sofia Rivera',
-    avatarUrl: '/avatars/sofia-rivera.svg',
+    avatarUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=300&h=300&q=80',
     headline: 'Referral and client growth strategist',
     bio: 'Sofia builds referral systems, follow-up campaigns, and local partnership plays for clinics, med spas, contractors, and professional services.',
     tags: ['referrals', 'local growth', 'sales'],
@@ -22,7 +22,7 @@ export const experts: Expert[] = [
   {
     id: 'exp-3',
     name: 'Tom Bennett',
-    avatarUrl: '/avatars/tom-bennett.svg',
+    avatarUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&h=300&q=80',
     headline: 'Acquisition sprint facilitator for local operators',
     bio: 'Tom teaches buyers how to source, evaluate, and structure local service business acquisition opportunities around real cash flow.',
     tags: ['acquisition', 'local business', 'strategy'],
@@ -30,7 +30,7 @@ export const experts: Expert[] = [
   {
     id: 'exp-4',
     name: 'Erin Walsh',
-    avatarUrl: '/avatars/erin-walsh.svg',
+    avatarUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=300&h=300&q=80',
     headline: 'Cash-flow and tax savings advisor for owners',
     bio: 'Erin shows small business owners how to find expense leaks, tighten cash flow, and keep more of what the business already earns.',
     tags: ['cash flow', 'tax savings', 'finance'],
