@@ -92,9 +92,11 @@ export function PaymentMethodChooser({ successHref }: PaymentMethodChooserProps)
         ) : null}
       </div>
 
-      <button className="mt-5 flex w-full items-center justify-center gap-2 rounded-xl bg-mint px-6 py-4 font-semibold text-white shadow-glow transition hover:bg-[#006f45]">
-        <Lock className="h-4 w-4" /> Authorize card pledge
-      </button>
+      {method === 'card' ? (
+        <button className="mt-5 flex w-full items-center justify-center gap-2 rounded-xl bg-mint px-6 py-4 font-semibold text-white shadow-glow transition hover:bg-[#006f45]">
+          <Lock className="h-4 w-4" /> Authorize hold by card
+        </button>
+      ) : null}
     </section>
   );
 }
