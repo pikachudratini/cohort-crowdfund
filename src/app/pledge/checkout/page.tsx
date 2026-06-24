@@ -14,9 +14,10 @@ export default async function MockStripeCheckout({ searchParams }: { searchParam
   const successHref = `/pledge/success?session=${session.id}&amount=${pledgeAmountCents}`;
 
   return (
-    <main className="min-h-screen bg-[#f6f8fb] px-4 py-8 text-slate-950 md:px-6">
+    <main className="min-h-screen bg-ivory px-4 py-8 text-navy md:px-6">
+      <div className="vibrant-band fixed inset-x-0 top-0 h-2" />
       <div className="mx-auto grid max-w-5xl overflow-hidden rounded-[28px] bg-white shadow-2xl ring-1 ring-slate-200 lg:grid-cols-[.88fr_1.12fr]">
-        <aside className="bg-slate-50 p-8 md:p-10">
+        <aside className="bg-ivory p-8 md:p-10">
           <Link href={`/pledge?session=${session.id}&tier=${tier.id}&amountCents=${pledgeAmountCents}`} className="inline-flex items-center gap-2 text-sm font-medium text-slate-500 hover:text-slate-900">
             <ArrowLeft className="h-4 w-4" /> Back
           </Link>
@@ -75,7 +76,7 @@ export default async function MockStripeCheckout({ searchParams }: { searchParam
               <input readOnly value="United States" className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none" />
             </label>
 
-            <button className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#635bff] px-6 py-4 font-semibold text-white shadow-lg shadow-indigo-200 transition hover:bg-[#5146f0]">
+            <button className="flex w-full items-center justify-center gap-2 rounded-xl bg-mint px-6 py-4 font-semibold text-navy shadow-glow transition hover:bg-[#00b66b]">
               <Lock className="h-4 w-4" /> Authorize card pledge
             </button>
 

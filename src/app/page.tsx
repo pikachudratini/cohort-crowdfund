@@ -31,7 +31,7 @@ function ProgressBar({ value }: { value: number }) {
 
 function PrimaryButton({ href, children }: { href: string; children: ReactNode }) {
   return (
-    <Link href={href} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-navy px-5 py-3 text-base font-semibold text-white shadow-glow transition hover:-translate-y-0.5 hover:bg-slate-800">
+    <Link href={href} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-mint px-5 py-3 text-base font-semibold text-navy shadow-glow transition hover:-translate-y-0.5 hover:bg-[#00b66b]">
       {children}
       <ArrowRight className="h-4 w-4" />
     </Link>
@@ -85,11 +85,14 @@ function SessionCard({ session }: { session: Session }) {
 function AdvancedDemo() {
   const advanced = sessions.filter((session) => session.offerVersion === 'v2');
   return (
-    <section id="advanced" className="bg-navy py-20 text-white">
+    <section id="advanced" className="relative overflow-hidden bg-white py-20 text-navy">
+      <div className="vibrant-band absolute inset-x-0 top-0 h-2" />
+      <div className="absolute -left-32 top-16 h-72 w-72 rounded-full bg-gold/25 blur-3xl" />
+      <div className="absolute -right-28 bottom-10 h-80 w-80 rounded-full bg-mint/20 blur-3xl" />
       <div className="mx-auto max-w-7xl px-6">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-4xl font-bold tracking-[-.035em] md:text-5xl">Make each lesson an event worth backing.</h2>
-          <p className="mt-5 text-lg leading-8 text-white/72">Creators can add bonus ladders, hot seats, top-bidder prizes, and group-buy mechanics without making the first MVP confusing.</p>
+          <p className="mt-5 text-lg leading-8 text-graphite">Creators can add bonus ladders, hot seats, top-bidder prizes, and group-buy mechanics without making the first MVP confusing.</p>
         </div>
         <div className="mt-12 grid gap-5 md:grid-cols-3">
           {[
@@ -97,12 +100,12 @@ function AdvancedDemo() {
             ['Top bidder prize', 'Highest or top-N backers can unlock a one-on-one, teardown, or private implementation review.'],
             ['Hybrid campaigns', 'Pool money to fund the lesson while limited premium slots make the offer richer.'],
           ].map(([title, body]) => (
-            <div key={title} className="rounded-3xl border border-white/10 bg-white/[.06] p-7">
+            <div key={title} className="rounded-3xl border border-sky/20 bg-ivory p-7 shadow-stripe">
               <div className="flex items-center gap-3">
                 <Sparkles className="h-7 w-7 shrink-0 text-gold" />
                 <h3 className="text-2xl font-bold tracking-[-.02em]">{title}</h3>
               </div>
-              <p className="mt-4 leading-7 text-white/70">{body}</p>
+              <p className="mt-4 leading-7 text-graphite">{body}</p>
             </div>
           ))}
         </div>
@@ -112,29 +115,29 @@ function AdvancedDemo() {
             const milestones = unlockedMilestones(session.milestones, raised);
             const topBid = pledgeRankings(session.pledges)[0]?.totalPledgedCents ?? 0;
             return (
-              <div key={session.id} className="rounded-3xl border border-white/10 bg-white/[.06] p-7">
+              <div key={session.id} className="rounded-3xl border border-gold/30 bg-white p-7 shadow-stripe">
                 <div className="flex items-center justify-between gap-3"><ModeBadge mode={session.campaignMode} /></div>
                 <h3 className="mt-5 text-3xl font-bold tracking-[-.03em]">{session.title}</h3>
                 <div className="mt-6 space-y-3">
                   {milestones.map((milestone) => (
-                    <div key={milestone.id} className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/[.06] p-4">
-                      <CheckCircle2 className={milestone.unlocked ? 'mt-1 h-5 w-5 shrink-0 text-mint' : 'mt-1 h-5 w-5 shrink-0 text-white/28'} />
-                      <div><p className="font-semibold">{milestone.title}</p><p className="text-sm leading-6 text-white/62">{formatCurrency(milestone.thresholdCents)}: {milestone.description}</p></div>
+                    <div key={milestone.id} className="flex items-start gap-3 rounded-2xl border border-sky/20 bg-ivory p-4">
+                      <CheckCircle2 className={milestone.unlocked ? 'mt-1 h-5 w-5 shrink-0 text-mint' : 'mt-1 h-5 w-5 shrink-0 text-sky'} />
+                      <div><p className="font-semibold">{milestone.title}</p><p className="text-sm leading-6 text-graphite">{formatCurrency(milestone.thresholdCents)}: {milestone.description}</p></div>
                     </div>
                   ))}
                 </div>
                 {session.prizes.length ? (
                   <div className="mt-5 rounded-2xl border border-gold/30 bg-gold/10 p-5 text-center">
                     <div className="flex items-center justify-center gap-2 text-gold"><Crown className="h-5 w-5" /><p className="font-semibold">Top bidder prize</p></div>
-                    <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-white/72">{session.prizes[0].description}</p>
+                    <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-graphite">{session.prizes[0].description}</p>
                     <div className="mx-auto mt-4 grid max-w-md gap-3 sm:grid-cols-2">
-                      <div className="rounded-2xl border border-gold/35 bg-black/20 p-4">
-                        <p className="text-xs font-semibold uppercase tracking-[.16em] text-white/45">Current top bid</p>
+                      <div className="rounded-2xl border border-gold/35 bg-white p-4">
+                        <p className="text-xs font-semibold uppercase tracking-[.16em] text-graphite">Current top bid</p>
                         <p className="mt-1 text-2xl font-bold text-gold">{formatCurrency(topBid)}</p>
                       </div>
-                      <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
-                        <p className="text-xs font-semibold uppercase tracking-[.16em] text-white/45">Bid closes in</p>
-                        <p className="mt-1 text-2xl font-bold text-white">{daysLeft(session.deadline)} days</p>
+                      <div className="rounded-2xl border border-sky/20 bg-white p-4">
+                        <p className="text-xs font-semibold uppercase tracking-[.16em] text-graphite">Bid closes in</p>
+                        <p className="mt-1 text-2xl font-bold text-navy">{daysLeft(session.deadline)} days</p>
                       </div>
                     </div>
                   </div>
@@ -202,7 +205,7 @@ function FundedEvents() {
                 );
               })}
             </div>
-            <Link href="#sessions" className="mt-6 inline-flex min-h-12 w-full items-center justify-center rounded-xl bg-navy px-5 py-3 text-base font-semibold text-white shadow-glow transition hover:-translate-y-0.5 hover:bg-slate-800">See open campaigns</Link>
+            <Link href="#sessions" className="mt-6 inline-flex min-h-12 w-full items-center justify-center rounded-xl bg-mint px-5 py-3 text-base font-semibold text-navy shadow-glow transition hover:-translate-y-0.5 hover:bg-[#00b66b]">See open campaigns</Link>
           </div>
         ))}
       </div>
@@ -213,7 +216,7 @@ function FundedEvents() {
 export default function HomePage() {
   const featured = sessions[0];
   return (
-    <main className="min-h-screen overflow-hidden bg-slate-50 text-navy">
+    <main className="min-h-screen overflow-hidden bg-ivory text-navy">
       <nav className="sticky top-0 z-50 border-b border-slate-200 bg-white/88 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <BrandLogo />
@@ -222,11 +225,14 @@ export default function HomePage() {
       </nav>
 
       <section className="relative px-6 pb-16 pt-10 md:pb-24 md:pt-16">
-        <div className="absolute left-1/2 top-0 h-[420px] w-[760px] -translate-x-1/2 rounded-full bg-indigo-100 blur-[110px]" />
+        <div className="vibrant-band absolute inset-x-0 top-0 h-2" />
+        <div className="absolute left-1/2 top-0 h-[420px] w-[760px] -translate-x-1/2 rounded-full bg-sky/20 blur-[110px]" />
+        <div className="absolute -left-24 top-28 h-56 w-56 rounded-full bg-coral/15 blur-3xl" />
+        <div className="absolute right-0 top-24 h-64 w-64 rounded-full bg-mint/20 blur-3xl" />
         <div className="relative mx-auto max-w-7xl">
           <div className="grid items-center gap-12 lg:grid-cols-[1.02fr_.98fr]">
             <div className="reveal">
-              <p className="inline-flex rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm">Kickstarter for live expert lessons</p>
+              <p className="inline-flex rounded-full border border-mint/25 bg-white px-4 py-2 text-sm font-semibold text-navy shadow-sm">Kickstarter-style live expert lessons</p>
               <h1 className="mt-7 max-w-5xl text-5xl font-bold leading-[1.02] tracking-[-.045em] text-navy md:text-6xl lg:text-7xl">Fund expert workshops together, only pay if the room fills.</h1>
               <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-600 md:text-xl">Experts propose high-value live sessions. Backers pledge together. If the campaign funds, the session happens. If not, nobody pays.</p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row"><PrimaryButton href="#sessions">Explore sessions</PrimaryButton><SecondaryButton href="/dashboard">Start as an expert</SecondaryButton></div>
