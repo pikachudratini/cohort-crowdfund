@@ -30,7 +30,7 @@ export default async function SessionDetail({ params }: { params: Promise<{ id: 
         <div className="mx-auto flex max-w-7xl items-center justify-between"><Link href="/" className="inline-flex items-center gap-2 text-sm font-semibold text-graphite"><ArrowLeft className="h-4 w-4" />Back to sessions</Link><Link href="/dashboard" className="rounded-full bg-mint px-4 py-2 text-sm font-semibold text-white shadow-glow">Expert dashboard</Link></div>
       </nav>
       <div className="vibrant-band h-2" />
-      <section className="mx-auto grid max-w-7xl gap-10 px-6 py-10 lg:grid-cols-[1.05fr_.95fr]">
+      <section className="mx-auto grid max-w-6xl gap-8 px-6 py-10 lg:grid-cols-[minmax(0,1fr)_440px]">
         <div>
           <div className="scroll-card mb-6 rounded-[30px] border border-sky/20 bg-white p-6 shadow-stripe backdrop-blur-xl">
             <p className="text-sm font-semibold uppercase tracking-[.22em] text-coral">Campaign details</p>
