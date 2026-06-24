@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 140" role="img" aria-labelledby="title desc">
+  <title id="title">Cohort CrowdFund logo option two</title>
+  <desc id="desc">Circular room and funding ring logo concept</desc>
+  <rect width="520" height="140" rx="28" fill="#fffaf0"/>
+  <circle cx="70" cy="70" r="47" fill="#10233f"/>
+  <path d="M42 70a28 28 0 0 1 56 0" fill="none" stroke="#ca8a04" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="42" cy="72" r="7" fill="#059669"/>
+  <circle cx="70" cy="42" r="7" fill="#ea580c"/>
+  <circle cx="98" cy="72" r="7" fill="#4f46e5"/>
+  <path d="M54 85h32" stroke="#fff" stroke-width="8" stroke-linecap="round"/>
+  <text x="140" y="66" font-family="Inter, Arial, sans-serif" font-size="36" font-weight="850" letter-spacing="-1.8" fill="#10233f">Cohort CrowdFund</text>
+  <text x="142" y="98" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800" letter-spacing="3" fill="#64748b">LIVE LESSONS FUNDED TOGETHER</text>
+</svg>

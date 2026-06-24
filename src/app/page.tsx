@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import Link from 'next/link';
 import { ArrowRight, CheckCircle2, Crown, ShieldCheck, Sparkles, Users } from 'lucide-react';
 import { sessions } from '@/lib/mock-data';
+import { BrandLogo } from '@/components/BrandLogo';
 import { amountRaisedCents, daysLeft, formatCurrency, percentFunded, pledgeRankings, unlockedMilestones, uniqueBackerCount } from '@/lib/funding';
 import type { Session } from '@/lib/types';
 
@@ -215,12 +216,12 @@ export default function HomePage() {
     <main className="min-h-screen overflow-hidden bg-slate-50 text-navy">
       <nav className="sticky top-0 z-50 border-b border-slate-200 bg-white/88 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-          <Link href="/" className="text-lg font-bold tracking-[-.03em] text-navy">Cohort CrowdFund</Link>
+          <BrandLogo />
           <div className="hidden items-center gap-7 text-sm font-semibold text-slate-600 md:flex"><a href="#sessions">Sessions</a><SecondaryButton href="/dashboard">Expert dashboard</SecondaryButton></div>
         </div>
       </nav>
 
-      <section className="relative px-6 py-20 md:py-28">
+      <section className="relative px-6 pb-16 pt-10 md:pb-24 md:pt-16">
         <div className="absolute left-1/2 top-0 h-[420px] w-[760px] -translate-x-1/2 rounded-full bg-indigo-100 blur-[110px]" />
         <div className="relative mx-auto max-w-7xl">
           <div className="grid items-center gap-12 lg:grid-cols-[1.02fr_.98fr]">

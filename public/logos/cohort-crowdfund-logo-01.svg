@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 140" role="img" aria-labelledby="title desc">
+  <title id="title">Cohort CrowdFund logo option one</title>
+  <desc id="desc">Professional wordmark with connected arc brand mark</desc>
+  <defs>
+    <linearGradient id="g" x1="20" x2="120" y1="20" y2="120" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#4f46e5"/>
+      <stop offset="0.52" stop-color="#ea580c"/>
+      <stop offset="1" stop-color="#059669"/>
+    </linearGradient>
+  </defs>
+  <rect x="18" y="18" width="104" height="104" rx="34" fill="url(#g)"/>
+  <path d="M42 82c12-22 27-33 45-33s33 11 45 33" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round"/>
+  <path d="M53 48h43" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round"/>
+  <circle cx="44" cy="88" r="8" fill="#fffaf0"/>
+  <circle cx="104" cy="88" r="8" fill="#fffaf0"/>
+  <text x="148" y="67" font-family="Inter, Arial, sans-serif" font-size="38" font-weight="900" letter-spacing="-2" fill="#10233f">Cohort</text>
+  <text x="148" y="101" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="800" letter-spacing="5" fill="#64748b">CROWDFUND</text>
+</svg>
