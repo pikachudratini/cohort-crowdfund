@@ -183,7 +183,7 @@ export default function HomePage() {
 
       <section id="sessions" className="mx-auto max-w-7xl px-6 py-20">
         <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
-          <div><p className="text-sm font-bold uppercase tracking-[.16em] text-coral">Version 1 demo</p><h2 className="mt-4 text-4xl font-bold tracking-[-.035em] md:text-5xl">Live sessions seeking backers</h2></div>
+          <div><h2 className="text-4xl font-bold tracking-[-.035em] md:text-5xl">Live sessions seeking backers</h2></div>
           <div className="flex flex-wrap gap-2 text-sm font-semibold text-slate-600">{['AI', 'Sales', 'Acquisition', 'Operations'].map((item) => <span key={item} className="rounded-full border border-slate-200 bg-white px-4 py-2 shadow-sm">{item}</span>)}</div>
         </div>
         <div className="mt-10 grid gap-7 lg:grid-cols-3">{sessions.map((session) => <SessionCard key={session.id} session={session} />)}</div>
