@@ -109,7 +109,7 @@ function AdvancedDemo() {
           {advanced.map((session) => {
             const raised = amountRaisedCents(session.pledges);
             const milestones = unlockedMilestones(session.milestones, raised);
-            const rankings = pledgeRankings(session.pledges).slice(0, 3);
+            const topBid = pledgeRankings(session.pledges)[0]?.totalPledgedCents ?? 0;
             return (
               <div key={session.id} className="rounded-3xl border border-white/10 bg-white/[.06] p-7">
                 <div className="flex items-center justify-between gap-3"><ModeBadge mode={session.campaignMode} /></div>
@@ -123,16 +123,87 @@ function AdvancedDemo() {
                   ))}
                 </div>
                 {session.prizes.length ? (
-                  <div className="mt-5 rounded-2xl border border-gold/30 bg-gold/10 p-4">
-                    <div className="flex items-center gap-2 text-gold"><Crown className="h-5 w-5" /><p className="font-semibold">Top bidder prize</p></div>
-                    <p className="mt-2 text-sm leading-6 text-white/72">{session.prizes[0].description}</p>
-                    <div className="mt-4 space-y-2 text-sm text-white/78">{rankings.map((rank) => <p key={rank.userId}>#{rank.rank} {rank.userName}: {formatCurrency(rank.totalPledgedCents)}</p>)}</div>
+                  <div className="mt-5 rounded-2xl border border-gold/30 bg-gold/10 p-5 text-center">
+                    <div className="flex items-center justify-center gap-2 text-gold"><Crown className="h-5 w-5" /><p className="font-semibold">Top bidder prize</p></div>
+                    <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-white/72">{session.prizes[0].description}</p>
+                    <div className="mx-auto mt-4 grid max-w-md gap-3 sm:grid-cols-2">
+                      <div className="rounded-2xl border border-gold/35 bg-black/20 p-4">
+                        <p className="text-xs font-semibold uppercase tracking-[.16em] text-white/45">Current top bid</p>
+                        <p className="mt-1 text-2xl font-bold text-gold">{formatCurrency(topBid)}</p>
+                      </div>
+                      <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
+                        <p className="text-xs font-semibold uppercase tracking-[.16em] text-white/45">Bid closes in</p>
+                        <p className="mt-1 text-2xl font-bold text-white">{daysLeft(session.deadline)} days</p>
+                      </div>
+                    </div>
                   </div>
                 ) : null}
               </div>
             );
           })}
         </div>
+      </div>
+    </section>
+  );
+}
+
+function FundedEvents() {
+  const fundedEvents = [
+    {
+      title: 'Tampa Referral Engine Workshop',
+      date: 'Happening Thursday at 2:00 PM ET',
+      summary: 'Funded by 42 local owners. New backers can still join the live room and replay.',
+      levels: [
+        ['Live seat', '$99', 'Available'],
+        ['Swipe file bundle', '$299', '6 left'],
+        ['Private implementation review', '$799', 'Sold out'],
+      ],
+    },
+    {
+      title: 'Owner Cash-Control Sprint',
+      date: 'Happening next Tuesday at 11:00 AM ET',
+      summary: 'Fully funded. The session is locked in, with a few remaining workshop seats open.',
+      levels: [
+        ['Workshop seat', '$129', 'Available'],
+        ['Cash-flow toolkit', '$349', '3 left'],
+        ['Bookkeeper question review', '$899', 'Sold out'],
+      ],
+    },
+  ];
+
+  return (
+    <section className="mx-auto max-w-7xl px-6 py-20">
+      <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
+        <div>
+          <p className="text-sm font-bold uppercase tracking-[.16em] text-mint">Fully funded and happening</p>
+          <h2 className="mt-3 text-4xl font-bold tracking-[-.035em] md:text-5xl">Join events already locked in.</h2>
+          <p className="mt-4 max-w-2xl text-lg leading-8 text-slate-600">Like Kickstarter reward tiers, some higher-touch spots are capped. Once they sell out, new backers can still join the available levels.</p>
+        </div>
+      </div>
+      <div className="mt-10 grid gap-6 lg:grid-cols-2">
+        {fundedEvents.map((event) => (
+          <div key={event.title} className="rounded-3xl border border-mint/20 bg-white p-7 shadow-stripe">
+            <div className="inline-flex rounded-full bg-mint/10 px-3 py-1 text-xs font-bold uppercase tracking-[.14em] text-mint">Funded</div>
+            <h3 className="mt-4 text-3xl font-bold tracking-[-.03em] text-navy">{event.title}</h3>
+            <p className="mt-2 font-semibold text-coral">{event.date}</p>
+            <p className="mt-3 leading-7 text-slate-600">{event.summary}</p>
+            <div className="mt-6 space-y-3">
+              {event.levels.map(([title, price, status]) => {
+                const soldOut = status === 'Sold out';
+                return (
+                  <div key={title} className={`flex items-center justify-between gap-4 rounded-2xl border p-4 ${soldOut ? 'border-slate-200 bg-slate-50 text-slate-400' : 'border-slate-200 bg-white text-navy'}`}>
+                    <div>
+                      <p className="font-bold">{title}</p>
+                      <p className="text-sm">{price}</p>
+                    </div>
+                    <span className={`rounded-full px-3 py-1 text-xs font-bold ${soldOut ? 'bg-slate-200 text-slate-500' : 'bg-mint/10 text-mint'}`}>{status}</span>
+                  </div>
+                );
+              })}
+            </div>
+            <Link href="#sessions" className="mt-6 inline-flex min-h-12 w-full items-center justify-center rounded-xl bg-navy px-5 py-3 text-base font-semibold text-white shadow-glow transition hover:-translate-y-0.5 hover:bg-slate-800">See open campaigns</Link>
+          </div>
+        ))}
       </div>
     </section>
   );
@@ -192,7 +263,9 @@ export default function HomePage() {
 
       <AdvancedDemo />
 
-      <footer className="border-t border-slate-200 bg-white px-6 py-10 text-center text-sm text-slate-500">Cohort CrowdFund, built as a two-version MVP: simple lesson crowdfunding first, advanced offer engine second.</footer>
+      <FundedEvents />
+
+      <footer className="border-t border-slate-200 bg-white px-6 py-10 text-center text-sm text-slate-500">Cohort CrowdFund, built as a marketplace for live expert lessons funded by the room.</footer>
     </main>
   );
 }

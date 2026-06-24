@@ -12,7 +12,7 @@ export default async function SessionDetail({ params }: { params: Promise<{ id: 
   const raised = amountRaisedCents(session.pledges);
   const percent = percentFunded(session);
   const milestones = unlockedMilestones(session.milestones, raised);
-  const rankings = pledgeRankings(session.pledges).slice(0, 5);
+  const topBid = pledgeRankings(session.pledges)[0]?.totalPledgedCents ?? 0;
 
   return (
     <main className="min-h-screen bg-ink text-white">
@@ -97,10 +97,19 @@ export default async function SessionDetail({ params }: { params: Promise<{ id: 
           ) : null}
 
           {session.prizes.length ? (
-            <div className="mt-6 rounded-[28px] border border-gold/45 bg-gold/10 p-6 shadow-[0_0_35px_rgba(244,201,93,.10)]">
-              <div className="flex items-center gap-2 text-gold"><Crown className="h-5 w-5" /><h3 className="text-xl font-semibold">Highest contributor gets extra bonuses</h3></div>
-              <p className="mt-3 text-white/70">{session.prizes[0].description}</p>
-              <div className="mt-4 space-y-2 text-sm">{rankings.map((rank) => <p key={rank.userId}>#{rank.rank} {rank.userName}: {formatCurrency(rank.totalPledgedCents)}</p>)}</div>
+            <div className="mt-6 rounded-[28px] border border-gold/45 bg-gold/10 p-6 text-center shadow-[0_0_35px_rgba(244,201,93,.10)]">
+              <div className="flex items-center justify-center gap-2 text-gold"><Crown className="h-5 w-5" /><h3 className="text-xl font-semibold">Highest contributor gets extra bonuses</h3></div>
+              <p className="mx-auto mt-3 max-w-md text-white/70">{session.prizes[0].description}</p>
+              <div className="mx-auto mt-5 grid max-w-md gap-3 sm:grid-cols-2">
+                <div className="rounded-2xl border border-gold/35 bg-black/20 p-4">
+                  <p className="text-xs font-semibold uppercase tracking-[.16em] text-white/45">Current top bid</p>
+                  <p className="mt-1 text-2xl font-bold text-gold">{formatCurrency(topBid)}</p>
+                </div>
+                <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
+                  <p className="text-xs font-semibold uppercase tracking-[.16em] text-white/45">Bid closes in</p>
+                  <p className="mt-1 text-2xl font-bold text-white">{daysLeft(session.deadline)} days</p>
+                </div>
+              </div>
             </div>
           ) : null}
         </aside>
