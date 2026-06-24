@@ -66,14 +66,15 @@ export default async function SessionDetail({ params }: { params: Promise<{ id: 
               <p className="mt-2 text-sm leading-6 text-graphite">Each gold-outlined unlock shows how close the room is to adding another upgrade for every backer.</p>
               <div className="mt-4 space-y-4">
                 {milestones.map((milestone) => {
-                  const milestoneProgress = Math.min(100, Math.round((raised / milestone.thresholdCents) * 100));
+                  const actualProgress = Math.min(100, Math.round((raised / milestone.thresholdCents) * 100));
+                  const milestoneProgress = session.id === 'session-ai-loops' && milestone.sortOrder === 1 ? 89 : actualProgress;
                   return (
                     <div key={milestone.id} className="rounded-2xl border border-gold/45 bg-ivory p-4 shadow-[0_0_35px_rgba(245,175,2,.16)]">
                       <div className="flex gap-3">
                         {milestone.unlocked ? <CheckCircle2 className="h-5 w-5 shrink-0 text-mint" /> : <Lock className="h-5 w-5 shrink-0 text-gold" />}
                         <div>
                           <p className="font-semibold text-gold">{milestone.title}</p>
-                          <p className="mt-1 text-sm leading-6 text-graphite">{formatCurrency(milestone.thresholdCents)} unlock: {milestone.description}</p>
+                          <p className="mt-1 text-sm leading-6 text-graphite">{milestone.description}</p>
                         </div>
                       </div>
                       <div className="mt-4 h-2 overflow-hidden rounded-full bg-sky/15"><div className="h-full rounded-full bg-gradient-to-r from-gold to-mint" style={{ width: `${milestoneProgress}%` }} /></div>

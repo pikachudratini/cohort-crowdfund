@@ -124,7 +124,7 @@ function AdvancedDemo() {
                   {milestones.map((milestone) => (
                     <div key={milestone.id} className="flex items-start gap-3 rounded-2xl border border-sky/20 bg-ivory p-4">
                       <CheckCircle2 className={milestone.unlocked ? 'mt-1 h-5 w-5 shrink-0 text-mint' : 'mt-1 h-5 w-5 shrink-0 text-sky'} />
-                      <div><p className="font-semibold">{milestone.title}</p><p className="text-sm leading-6 text-graphite">{formatCurrency(milestone.thresholdCents)}: {milestone.description}</p></div>
+                      <div><p className="font-semibold">{milestone.title}</p><p className="text-sm leading-6 text-graphite">{milestone.description}</p></div>
                     </div>
                   ))}
                 </div>
